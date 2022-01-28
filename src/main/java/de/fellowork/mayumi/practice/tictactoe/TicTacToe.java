@@ -15,7 +15,7 @@ public class TicTacToe {
         TicTacToeGameLoop loop = new TicTacToeGameLoop(printer, configuration, evaluator);
 
         TicTacToeBoard board = new TicTacToeBoard();
-        loop.run(board);
+        loop.run(board,1);
 
 
     }

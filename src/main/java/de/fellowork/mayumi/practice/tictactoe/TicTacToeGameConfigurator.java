@@ -12,9 +12,12 @@ public class TicTacToeGameConfigurator {
 
 
     public GameConfiguration createConfiguration(){
-        //wo kommen die Spieler her?
 
-        return new GameConfiguration(null,null);
+        Player playerOne = new HumanPlayer();
+        Player playerTwo = new HumanPlayer();
+
+
+        return new GameConfiguration(playerOne, playerTwo);
     }
 
 }
