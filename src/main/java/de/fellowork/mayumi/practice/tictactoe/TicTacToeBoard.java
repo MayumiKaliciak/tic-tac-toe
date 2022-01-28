@@ -1,2 +1,7 @@
-package de.fellowork.mayumi.practice.tictactoe;public class TicTacToeBoard {
+package de.fellowork.mayumi.practice.tictactoe;
+
+/**
+ * datenhaltung des spielzustands
+ */
+public class TicTacToeBoard {
 }

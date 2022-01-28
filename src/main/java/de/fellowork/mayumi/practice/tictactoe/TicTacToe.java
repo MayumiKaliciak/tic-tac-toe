@@ -1,2 +1,22 @@
-package de.fellowork.mayumi.practice.tictactoe;public class TicTacToe {
+package de.fellowork.mayumi.practice.tictactoe;
+
+/**
+ *
+ * baut das spiel zusammen und startet es
+ */
+public class TicTacToe {
+
+    public void startGame() {
+
+        TicTacToePrinter printer = new TicTacToePrinter();
+        TicTacToeGameConfigurator configurator = new TicTacToeGameConfigurator();
+        GameConfiguration configuration = configurator.createConfiguration();
+        GameStateEvaluator evaluator = new GameStateEvaluator();
+        TicTacToeGameLoop loop = new TicTacToeGameLoop(printer, configuration, evaluator);
+
+        TicTacToeBoard board = new TicTacToeBoard();
+        loop.run(board);
+
+
+    }
 }

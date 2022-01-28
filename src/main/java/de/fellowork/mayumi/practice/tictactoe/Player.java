@@ -1,2 +1,4 @@
-package de.fellowork.mayumi.practice.tictactoe;public interface Player {
+package de.fellowork.mayumi.practice.tictactoe;
+
+public interface Player {
 }
