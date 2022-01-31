@@ -8,13 +8,14 @@ public class TicTacToe {
 
     public void startGame() {
 
+        TicTacToeBoard board = new TicTacToeBoard();
         TicTacToePrinter printer = new TicTacToePrinter();
         TicTacToeGameConfigurator configurator = new TicTacToeGameConfigurator();
         GameConfiguration configuration = configurator.createConfiguration();
         GameStateEvaluator evaluator = new GameStateEvaluator();
         TicTacToeGameLoop loop = new TicTacToeGameLoop(printer, configuration, evaluator);
 
-        TicTacToeBoard board = new TicTacToeBoard();
+
         loop.run(board,1);
 
 
