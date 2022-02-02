@@ -1,6 +1,7 @@
 package de.fellowork.mayumi.practice.tictactoe;
 
-import java.util.Objects;
+import lombok.AllArgsConstructor;
+
 import java.util.Scanner;
 
 /**
@@ -10,92 +11,48 @@ import java.util.Scanner;
  * welcher spieler beginnt
  */
 
-
+@AllArgsConstructor
 public class TicTacToeGameConfigurator {
 
-    private final Scanner scanner = new Scanner(System.in);
+    private static final String PLAYER_SYMBOL_X = "x";
+    private static final String PLAYER_SYMBOL_O = "o";
 
+    private final TicTacToePrinter printer;
+    private final TicTacToeInputCollector collector;
+    private final TicTacToeBoard board;
 
     public GameConfiguration createConfiguration(){
 
-        Player playerOne = null;
-        Player playerTwo = null;
-        System.out.println("The options to play TicTacToe are: \n1: human-human\n2: human-computer\n3: computer-computer");
+        printer.printGameConfiguration();
 
-        playerOne = getPlayerOne(playerOne);
-        playerTwo = getPlayerTwo(playerTwo);
+        printer.printChoosePlayerOne();
+        Player playerOne = getPlayer(PLAYER_SYMBOL_X);
+
+        printer.printChoosePlayerTwo();
+        Player playerTwo = getPlayer(PLAYER_SYMBOL_O);
 
         return new GameConfiguration(playerOne, playerTwo);
     }
 
-    private Player getPlayerOne(Player playerOne) {
+    private Player getPlayer(String playerSymbol) {
 
-        while(!firstPlayerIsHuman() && !firstPlayerIsComputer()) {
-            System.out.println("Please select player one by typing in 'human' or 'computer'");
-            if (firstPlayerIsHuman()) {
-                playerOne = new HumanPlayer();
-            }
-            if (firstPlayerIsComputer()) {
-                playerOne = new KIPlayer();
-            }
-        }
-        return playerOne;
-    }
+        Player createdPlayer = null;
 
+        while(createdPlayer == null) {
 
-    private boolean firstPlayerIsHuman() {
+            String selectedPlayerType = collector.collectPlayerType();
 
-        String firstPlayer = scanner.nextLine();
-        if(firstPlayer == "human"){
-            return true;
-        } else {
-            return false;
-        }
-    }
+            if("human".equals(selectedPlayerType)){
+                createdPlayer = new HumanPlayer(playerSymbol, printer, collector, board);
 
-    private boolean firstPlayerIsComputer() {
+            } else if ("computer".equals(selectedPlayerType)){
+                createdPlayer = new KIPlayer(playerSymbol, collector);
 
-        String firstPlayer = scanner.nextLine();
-        if(firstPlayer == "computer"){
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private Player getPlayerTwo(Player playerTwo) {
-
-        while(!secondPlayerIsHuman() && !secondPlayerIsComputer()) {
-            System.out.println("Please select player one by typing in 'human' or 'computer'");
-            if (secondPlayerIsHuman()) {
-                playerTwo = new HumanPlayer();
-            }
-            if (secondPlayerIsComputer()) {
-                playerTwo = new KIPlayer();
+            } else {
+                printer.printFailureMessage();
             }
         }
-        return playerTwo;
+        return createdPlayer;
     }
-
-    private boolean secondPlayerIsHuman() {
-
-        String secondPlayer = scanner.nextLine();
-        if(Objects.equals(secondPlayer, "human")){
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private boolean secondPlayerIsComputer() {
-
-        String secondPlayer = scanner.nextLine();
-        if(Objects.equals(secondPlayer, "computer")){
-            return true;
-        } else {
-            return false;
-        }
-    }
-
 
 }

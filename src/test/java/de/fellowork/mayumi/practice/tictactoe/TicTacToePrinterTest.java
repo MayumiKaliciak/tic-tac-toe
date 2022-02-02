@@ -2,14 +2,21 @@ package de.fellowork.mayumi.practice.tictactoe;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ * TODO: Assert console output later
+ */
 class TicTacToePrinterTest {
 
-    private final TicTacToePrinter ticTacToePrinter = new TicTacToePrinter();
+    private final TicTacToePrinter printer = new TicTacToePrinter();
 
     @Test
     void printOutDefaultBoard() {
-        ticTacToePrinter.printOutDefaultBoard(new TicTacToeBoard());
+        TicTacToeBoard board = new TicTacToeBoard();
+        printer.printBoardToConsole(board);
+    }
+
+    @Test
+    void printGameStart() {
+        printer.printStartPlayInfo();
     }
 }

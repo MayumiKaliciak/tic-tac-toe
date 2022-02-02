@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TicTacToeGameConfiguratorTest {
 
-    TicTacToeGameConfigurator configurator = new TicTacToeGameConfigurator();
+    TicTacToeGameConfigurator configurator = new TicTacToeGameConfigurator(new TicTacToePrinter(),new TicTacToeInputCollector());
 
     @Test
     void testReturnPlayerOneIsHuman(){

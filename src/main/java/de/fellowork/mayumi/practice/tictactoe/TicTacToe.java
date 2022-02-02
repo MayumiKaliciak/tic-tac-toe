@@ -10,9 +10,11 @@ public class TicTacToe {
 
         TicTacToeBoard board = new TicTacToeBoard();
         TicTacToePrinter printer = new TicTacToePrinter();
-        TicTacToeGameConfigurator configurator = new TicTacToeGameConfigurator();
+        TicTacToeInputCollector collector = new TicTacToeInputCollector();
+        TicTacToeGameConfigurator configurator = new TicTacToeGameConfigurator(printer, collector, board);
         GameConfiguration configuration = configurator.createConfiguration();
-        GameStateEvaluator evaluator = new GameStateEvaluator();
+        GameStateEvaluator evaluator = new GameStateEvaluator(board);
+
         TicTacToeGameLoop loop = new TicTacToeGameLoop(printer, configuration, evaluator);
 
 

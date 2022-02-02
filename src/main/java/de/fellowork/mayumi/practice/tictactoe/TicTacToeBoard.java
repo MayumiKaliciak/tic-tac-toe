@@ -11,17 +11,25 @@ import java.util.stream.IntStream;
 
 public class TicTacToeBoard {
 
-   private final Map<Integer, Player> dataField;
+   private final Map<TicTacToeFieldKey, Player> dataField;
 
     public TicTacToeBoard() {
         this.dataField = new HashMap<>();
 
     }
 
-    public Player getPlayer(Integer fieldKey) {
+    public Player getPlayer(TicTacToeFieldKey fieldKey) {
        return dataField.get(fieldKey);
 
    }
+
+    public boolean setPlayer(TicTacToeFieldKey fieldKey, Player player) {
+        if(dataField.containsKey(fieldKey)){
+            return false;
+        }
+        dataField.put(fieldKey,player);
+        return true;
+    }
 
 
 

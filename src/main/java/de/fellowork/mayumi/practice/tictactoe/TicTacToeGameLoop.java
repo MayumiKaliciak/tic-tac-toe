@@ -18,8 +18,7 @@ public class TicTacToeGameLoop {
         Player playerOne = configuration.getPlayerOne();
         Player playerTwo = configuration.getPlayerTwo();
 
-        printer.printOutDefaultBoard(board);
-
+        printer.printStartPlayInfo();
 
         if (!evaluator.gameIsOver(board)) {
             if(gameRound % 2 != 0) {
@@ -27,9 +26,7 @@ public class TicTacToeGameLoop {
 
             } else {
                 board = playerTwo.doGameMove(board);
-
             }
-            // print move
 
             run(board, gameRound + 1);
         }
