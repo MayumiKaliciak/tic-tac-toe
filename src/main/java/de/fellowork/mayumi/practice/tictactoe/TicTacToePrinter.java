@@ -8,21 +8,21 @@ package de.fellowork.mayumi.practice.tictactoe;
  */
 public class TicTacToePrinter {
 
-    public void printStartPlayInfo(){
+    public void printStartPlayInfo() {
         System.out.println("Welcome to Tic Tac Toe. To access the fields press right keys on your keyboard. Example: To access field top right, press 9");
         String printedTicTacToe = "7 | 8 | 9\n---------\n4 | 5 | 6\n---------\n1 | 2 | 3\n";
         System.out.println(printedTicTacToe);
     }
 
-    public void printGameConfiguration(){
+    public void printGameConfiguration() {
         System.out.println("The options to play TicTacToe are: \n1: human-human\n2: human-computer\n3: computer-computer");
     }
 
-    public void printChoosePlayerOne(){
+    public void printChoosePlayerOne() {
         System.out.println("Please select option for the first player by typing in 'human' or 'computer'");
     }
 
-    public void printChoosePlayerTwo(){
+    public void printChoosePlayerTwo() {
         System.out.println("Please select option for the second player by typing in 'human' or 'computer'");
     }
 
@@ -42,21 +42,32 @@ public class TicTacToePrinter {
             if (playerIsSet(player)) {
                 printedTicTacToe = putPlayerSymbolIntoBoardToPrint(printedTicTacToe, key, player);
 
-            } else {
-                // mach nichts
+//            } else {
+//            mach nichts
 //                printBoardToConsole(board, printedTicTacToe);
             }
             System.out.println(printedTicTacToe);
         }
     }
 
-            public boolean playerIsSet(Player player) {
-                return player != null;
-            }
+    public boolean playerIsSet(Player player) {
+        return player != null;
+    }
 
-            private String putPlayerSymbolIntoBoardToPrint(String printedTicTacToe, TicTacToeFieldKey key, Player player) {
-                printedTicTacToe = printedTicTacToe.replace(key.getNumberAsString(), player.getPlayerSymbol());
-                return printedTicTacToe;
-            }
+    private String putPlayerSymbolIntoBoardToPrint(String printedTicTacToe, TicTacToeFieldKey key, Player player) {
+        printedTicTacToe = printedTicTacToe.replace(key.getNumberAsString(), player.getPlayerSymbol());
+        return printedTicTacToe;
+    }
 
+    public void printPlayerOneWon() {
+        System.out.println("Player One has won the game");
+    }
+
+    public void printPlayerTwoWon() {
+        System.out.println("Player Two has won the game");
+    }
+
+    public void printOutDraw() {
+        System.out.println("Draw! Nobody has won the game");
+    }
 }

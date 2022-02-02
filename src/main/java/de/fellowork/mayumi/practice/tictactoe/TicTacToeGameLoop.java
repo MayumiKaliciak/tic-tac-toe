@@ -8,31 +8,47 @@ public class TicTacToeGameLoop {
     private final TicTacToePrinter printer;
     private final GameConfiguration configuration;
     private final GameStateEvaluator evaluator;
+    private final Player playerOne = configuration.getPlayerOne();
+    private final Player playerTwo = configuration.getPlayerTwo();
 
-    /**
-     * gesamter ablauf /technik des spiels, aber ohne allzu detailierte logik
-     *
-     * @param board
-     */
+
     public void run(TicTacToeBoard board, int gameRound) {
-        Player playerOne = configuration.getPlayerOne();
-        Player playerTwo = configuration.getPlayerTwo();
+
 
         printer.printStartPlayInfo();
 
         if (!evaluator.gameIsOver(board)) {
-            if(gameRound % 2 != 0) {
-                board = playerOne.doGameMove(board);
+            alternateGameMoves(board, gameRound);
+        } else {
+            lookForResult();
+        }
+    }
 
+    private void alternateGameMoves(TicTacToeBoard board, int gameRound) {
+
+
+        if (gameRound <= 9) {
+            if (gameRound % 2 != 0) {
+                board = playerOne.doGameMove(board);
             } else {
                 board = playerTwo.doGameMove(board);
             }
-
-            run(board, gameRound + 1);
+            gameRound++;
+            alternateGameMoves(board, gameRound + 1);
         }
 
-        // print result
+        //TODO braucht es hier einen break? oder geht er aus dem if einfach raus, sobald gameRound > 9 ist?
+    }
 
+    private void lookForResult() {
+        if (evaluator.playerOneWon()) {
+            printer.printPlayerOneWon();
+        } else if (evaluator.playerTwoWon()) {
+            printer.printPlayerTwoWon();
+        } else {
+            printer.printOutDraw();
+        }
     }
 
 }
+

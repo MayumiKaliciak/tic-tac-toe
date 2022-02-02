@@ -15,9 +15,9 @@ public class HumanPlayer implements Player {
     public TicTacToeBoard doGameMove(TicTacToeBoard board) {
 
         printer.printGameMoveRequest();
-        collector.collectGameMove();
+        TicTacToeFieldKey fieldKey = TicTacToeFieldKey.valueOf(collector.collectGameMove());
 
-        if(board.setPlayer(fieldKey, board)){
+        if(board.setPlayer(fieldKey, getPlayerSymbol())){ //TODO Verständnisproblem
             printer.printBoardToConsole(board);
         }
 
