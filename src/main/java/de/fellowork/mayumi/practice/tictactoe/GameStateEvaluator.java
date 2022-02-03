@@ -2,56 +2,65 @@ package de.fellowork.mayumi.practice.tictactoe;
 
 import lombok.AllArgsConstructor;
 
+import static de.fellowork.mayumi.practice.tictactoe.TicTacToeFieldKey.*;
+
 @AllArgsConstructor
 public class GameStateEvaluator {
 
-    private final TicTacToeBoard board;
-
-    public boolean gameIsOver(TicTacToeBoard board) {
-        return winnerExists() || draw();
+    public boolean checkPLayerWinningStatus(Player player, TicTacToeBoard board) {
+        return sameValuesInColumn(player, board) ||
+                sameValuesInRow(player, board) ||
+                sameValuesInDiagonal(player, board);
     }
 
-    public boolean winnerExists(){
-        return sameValuesInColumn() || sameValuesInRow() || sameValuesInDiagonal();
+    public boolean sameValuesInColumn(Player player, TicTacToeBoard board) {
+        return firstColumnWins(player, board) ||
+                secondColumnWins(player, board) ||
+                thirdColumnWins(player, board);
     }
 
-    public boolean draw() {
-        return !winnerExists();
+    public boolean sameValuesInRow(Player player, TicTacToeBoard board) {
+        return firstRowWins(player, board) ||
+                secondRowWins(player, board) ||
+                thirdRowWins(player, board);
     }
 
-    //TODO Gewinnbedingungen formulieren
-
-    public boolean sameValuesInColumn(){
-        // wenn 7, 4, 1 || 8, 5, 2 || 9, 6, 3 gleichen value haben
-        return true;
-    }
-
-    public boolean sameValuesInRow(){
-        // wenn 7, 8, 9 || 4, 5, 6 || 1, 2, 3 gleichen value haben
-        return true;
-    }
-
-    public boolean sameValuesInDiagonal(){
-        // wenn 7, 5, 3 || 1, 5, 9 gleichen value haben
-        return true;
-    }
-
-    public boolean playerOneWon(){
-        // wenn winnerExists() und
-        // in Column, Row oder Diagonal PlayerOne steht
-
-        return true;
-    }
-
-    public boolean playerTwoWon(){
-        // wenn winnerExists() und
-        // in Column, Row oder Diagonal PlayerTwo steht
-
-        return true;
+    public boolean sameValuesInDiagonal(Player player, TicTacToeBoard board) {
+        return topLeftToBottomRightWins(player, board) ||
+                bottomLeftToTopRightWins(player, board);
     }
 
 
+    private boolean thirdColumnWins(Player player, TicTacToeBoard board) {
+        return board.isPLayerOnField(Nine, player) && board.isPLayerOnField(Six, player) && board.isPLayerOnField(Three, player);
+    }
 
+    private boolean secondColumnWins(Player player, TicTacToeBoard board) {
+        return board.isPLayerOnField(Eight, player) && board.isPLayerOnField(Five, player) && board.isPLayerOnField(Two, player);
+    }
 
+    private boolean firstColumnWins(Player player, TicTacToeBoard board) {
+        return board.isPLayerOnField(Seven, player) && board.isPLayerOnField(Four, player) && board.isPLayerOnField(One, player);
+    }
+
+    private boolean thirdRowWins(Player player, TicTacToeBoard board) {
+        return board.isPLayerOnField(One, player) && board.isPLayerOnField(Two, player) && board.isPLayerOnField(Three, player);
+    }
+
+    private boolean secondRowWins(Player player, TicTacToeBoard board) {
+        return board.isPLayerOnField(Four, player) && board.isPLayerOnField(Five, player) && board.isPLayerOnField(Six, player);
+    }
+
+    private boolean firstRowWins(Player player, TicTacToeBoard board) {
+        return board.isPLayerOnField(Seven, player) && board.isPLayerOnField(Eight, player) && board.isPLayerOnField(Nine, player);
+    }
+
+    private boolean bottomLeftToTopRightWins(Player player, TicTacToeBoard board) {
+        return board.isPLayerOnField(One, player) && board.isPLayerOnField(Five, player) && board.isPLayerOnField(Nine, player);
+    }
+
+    private boolean topLeftToBottomRightWins(Player player, TicTacToeBoard board) {
+        return board.isPLayerOnField(Seven, player) && board.isPLayerOnField(Five, player) && board.isPLayerOnField(Three, player);
+    }
 
 }

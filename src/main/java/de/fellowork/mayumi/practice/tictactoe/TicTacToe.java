@@ -13,12 +13,11 @@ public class TicTacToe {
         TicTacToeInputCollector collector = new TicTacToeInputCollector();
         TicTacToeGameConfigurator configurator = new TicTacToeGameConfigurator(printer, collector, board);
         GameConfiguration configuration = configurator.createConfiguration();
-        GameStateEvaluator evaluator = new GameStateEvaluator(board);
+        GameStateEvaluator evaluator = new GameStateEvaluator();
 
-        TicTacToeGameLoop loop = new TicTacToeGameLoop(printer, configuration, evaluator);
+        TicTacToeGameLoop loop = new TicTacToeGameLoop(printer, evaluator);
 
-
-        loop.run(board,1);
+        loop.run(board,configuration);
 
 
     }

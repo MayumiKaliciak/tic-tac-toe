@@ -41,13 +41,10 @@ public class TicTacToePrinter {
 
             if (playerIsSet(player)) {
                 printedTicTacToe = putPlayerSymbolIntoBoardToPrint(printedTicTacToe, key, player);
-
-//            } else {
-//            mach nichts
-//                printBoardToConsole(board, printedTicTacToe);
             }
-            System.out.println(printedTicTacToe);
+
         }
+        System.out.println(printedTicTacToe);
     }
 
     public boolean playerIsSet(Player player) {
@@ -59,15 +56,11 @@ public class TicTacToePrinter {
         return printedTicTacToe;
     }
 
-    public void printPlayerOneWon() {
-        System.out.println("Player One has won the game");
-    }
-
-    public void printPlayerTwoWon() {
-        System.out.println("Player Two has won the game");
-    }
-
     public void printOutDraw() {
         System.out.println("Draw! Nobody has won the game");
+    }
+
+    public void printPlayerWon(Player player) {
+        System.out.println("The winner is Player: " + player.getPlayerSymbol());
     }
 }

@@ -7,7 +7,6 @@ public class KIPlayer implements Player {
 
     private final String playerSymbol;
 
-    private final TicTacToeInputCollector collector;
 
     @Override
     public TicTacToeBoard doGameMove(TicTacToeBoard board) {

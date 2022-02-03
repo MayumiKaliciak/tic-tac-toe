@@ -6,48 +6,42 @@ import lombok.AllArgsConstructor;
 public class TicTacToeGameLoop {
 
     private final TicTacToePrinter printer;
-    private final GameConfiguration configuration;
     private final GameStateEvaluator evaluator;
-    private final Player playerOne = configuration.getPlayerOne();
-    private final Player playerTwo = configuration.getPlayerTwo();
 
+    public void run(TicTacToeBoard board,GameConfiguration gameConfiguration) {
 
-    public void run(TicTacToeBoard board, int gameRound) {
-
+        Player playerOne = gameConfiguration.getPlayerOne();
+        Player playerTwo = gameConfiguration.getPlayerTwo();
 
         printer.printStartPlayInfo();
 
-        if (!evaluator.gameIsOver(board)) {
-            alternateGameMoves(board, gameRound);
-        } else {
-            lookForResult();
-        }
-    }
+        for (int gameRounds = 1; gameRounds <=9 ; gameRounds++) {
 
-    private void alternateGameMoves(TicTacToeBoard board, int gameRound) {
+            if (gameRounds % 2 != 0) {
+                board = doPlayerMove(board, playerOne);
+                if(evaluator.checkPLayerWinningStatus(playerOne, board)){
+                    printer.printPlayerWon(playerOne);
+                    return;
+                }
 
-
-        if (gameRound <= 9) {
-            if (gameRound % 2 != 0) {
-                board = playerOne.doGameMove(board);
             } else {
-                board = playerTwo.doGameMove(board);
-            }
-            gameRound++;
-            alternateGameMoves(board, gameRound + 1);
-        }
+                board = doPlayerMove(board, playerTwo);
+                if(evaluator.checkPLayerWinningStatus(playerTwo, board)){
+                    printer.printPlayerWon(playerTwo);
+                    return;
+                }
 
-        //TODO braucht es hier einen break? oder geht er aus dem if einfach raus, sobald gameRound > 9 ist?
+            }
+        }
+        printer.printOutDraw();
+
     }
 
-    private void lookForResult() {
-        if (evaluator.playerOneWon()) {
-            printer.printPlayerOneWon();
-        } else if (evaluator.playerTwoWon()) {
-            printer.printPlayerTwoWon();
-        } else {
-            printer.printOutDraw();
-        }
+    private TicTacToeBoard doPlayerMove(TicTacToeBoard board, Player player) {
+        printer.printGameMoveRequest();
+        board = player.doGameMove(board);
+        printer.printBoardToConsole(board);
+        return board;
     }
 
 }

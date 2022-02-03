@@ -14,13 +14,10 @@ public class HumanPlayer implements Player {
     @Override
     public TicTacToeBoard doGameMove(TicTacToeBoard board) {
 
-        printer.printGameMoveRequest();
+
         TicTacToeFieldKey fieldKey = TicTacToeFieldKey.valueOf(collector.collectGameMove());
 
-        if(board.setPlayer(fieldKey, getPlayerSymbol())){ //TODO Verständnisproblem
-            printer.printBoardToConsole(board);
-        }
-
+        board.setPlayer(fieldKey, this);
 
         return board;
     }

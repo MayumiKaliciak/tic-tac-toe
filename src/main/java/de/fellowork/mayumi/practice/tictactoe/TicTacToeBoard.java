@@ -23,14 +23,23 @@ public class TicTacToeBoard {
 
    }
 
+    public boolean isPLayerOnField(TicTacToeFieldKey fieldKey, Player player) {
+        if(hasPlayerSet(fieldKey)){
+            return false;
+        }
+        return getPlayer(fieldKey).equals(player);
+    }
+
     public boolean setPlayer(TicTacToeFieldKey fieldKey, Player player) {
-        if(dataField.containsKey(fieldKey)){
+        if(hasPlayerSet(fieldKey)){
             return false;
         }
         dataField.put(fieldKey,player);
         return true;
     }
 
-
+    private boolean hasPlayerSet(TicTacToeFieldKey fieldKey) {
+        return dataField.containsKey(fieldKey);
+    }
 
 }
