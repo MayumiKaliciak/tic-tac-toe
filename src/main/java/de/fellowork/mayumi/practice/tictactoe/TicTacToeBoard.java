@@ -27,7 +27,7 @@ public class TicTacToeBoard {
         if(hasPlayerSet(fieldKey)){
             return false;
         }
-        return getPlayer(fieldKey).equals(player);
+        return player != null && player.equals(getPlayer(fieldKey));
     }
 
     public boolean setPlayer(TicTacToeFieldKey fieldKey, Player player) {

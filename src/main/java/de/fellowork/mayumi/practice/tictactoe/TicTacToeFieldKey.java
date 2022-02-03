@@ -4,6 +4,7 @@ import lombok.Getter;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public enum TicTacToeFieldKey {
 
@@ -26,6 +27,12 @@ public enum TicTacToeFieldKey {
 
     public static List<TicTacToeFieldKey> toList(){
         return Arrays.asList(values());
+    }
+
+    public static Optional<TicTacToeFieldKey> findByNumberString(String numberAsString){
+        return toList().stream()
+                .filter(key -> numberAsString.equals(key.getNumberAsString()))
+                .findFirst();
     }
 
 }

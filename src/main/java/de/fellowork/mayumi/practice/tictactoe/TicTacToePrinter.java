@@ -63,4 +63,8 @@ public class TicTacToePrinter {
     public void printPlayerWon(Player player) {
         System.out.println("The winner is Player: " + player.getPlayerSymbol());
     }
+
+    public void invalidGameFieldKeyEntered() {
+        System.out.println("You entered an invalid field number. Try again.");
+    }
 }

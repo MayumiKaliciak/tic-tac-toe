@@ -10,7 +10,8 @@ public class TicTacToeInputCollector {
         return scanner.nextLine();
     }
 
-    public String collectGameMove() {
-        return scanner.nextLine();
+    public TicTacToeFieldKey collectGameMove() {
+        String scannedLine = scanner.nextLine();
+        return TicTacToeFieldKey.findByNumberString(scannedLine).orElse(null);
     }
 }
