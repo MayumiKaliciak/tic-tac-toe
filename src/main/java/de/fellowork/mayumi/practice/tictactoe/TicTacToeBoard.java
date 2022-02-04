@@ -19,22 +19,16 @@ public class TicTacToeBoard {
 
     }
 
-    public boolean catchNPE(TicTacToeFieldKey fieldKey){
-        try {getPlayer(fieldKey);return true;} catch (NullPointerException e) {
-            return false;
-        }
-    }
-
     public Player getPlayer(TicTacToeFieldKey fieldKey) {
         return dataField.get(fieldKey);
 
     }
 
     public boolean isPLayerOnField(TicTacToeFieldKey fieldKey, Player player) {
-        if(hasPlayerSet(fieldKey)){
+        if(!hasPlayerSet(fieldKey)){
             return false;
         }
-        return player != null && player.equals(getPlayer(fieldKey));
+        return player != null && player==getPlayer(fieldKey);
     }
 
 

@@ -17,6 +17,7 @@ public class TicTacToeGameLoop {
 
         for (int gameRounds = 1; gameRounds <=9 ; gameRounds++) {
 
+
             if (gameRounds % 2 != 0) {
                 board = doPlayerMove(board, playerOne);
                 if(evaluator.checkPLayerWinningStatus(playerOne, board)){
