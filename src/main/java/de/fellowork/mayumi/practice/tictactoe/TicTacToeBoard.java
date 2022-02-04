@@ -3,6 +3,7 @@ package de.fellowork.mayumi.practice.tictactoe;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.IntStream;
 
 /**
@@ -18,17 +19,24 @@ public class TicTacToeBoard {
 
     }
 
-    public Player getPlayer(TicTacToeFieldKey fieldKey) {
-       return dataField.get(fieldKey);
+    public boolean catchNPE(TicTacToeFieldKey fieldKey){
+        try {getPlayer(fieldKey);return true;} catch (NullPointerException e) {
+            return false;
+        }
+    }
 
-   }
+    public Player getPlayer(TicTacToeFieldKey fieldKey) {
+        return dataField.get(fieldKey);
+
+    }
 
     public boolean isPLayerOnField(TicTacToeFieldKey fieldKey, Player player) {
         if(hasPlayerSet(fieldKey)){
             return false;
         }
-        return getPlayer(fieldKey).equals(player);
+        return player != null && player.equals(getPlayer(fieldKey));
     }
+
 
     public boolean setPlayer(TicTacToeFieldKey fieldKey, Player player) {
         if(hasPlayerSet(fieldKey)){
