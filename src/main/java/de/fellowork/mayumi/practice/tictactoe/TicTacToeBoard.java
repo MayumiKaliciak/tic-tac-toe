@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
  * datenhaltung des spielzustands
  */
 
-public class TicTacToeBoard {
+public class TicTacToeBoard implements Cloneable{
 
    private final Map<TicTacToeFieldKey, Player> dataField;
 
@@ -19,6 +19,10 @@ public class TicTacToeBoard {
 
     }
 
+    public TicTacToeBoard(Map<TicTacToeFieldKey, Player> dataField) {
+        this.dataField =dataField;
+
+    }
     public Player getPlayer(TicTacToeFieldKey fieldKey) {
         return dataField.get(fieldKey);
 
@@ -40,8 +44,31 @@ public class TicTacToeBoard {
         return true;
     }
 
+    public boolean unsetPlayer(TicTacToeFieldKey fieldKey, Player player) {
+        if(!hasPlayerSet(fieldKey)){
+            return false;
+        }
+        dataField.remove(fieldKey,player);
+        return true;
+    }
+
     private boolean hasPlayerSet(TicTacToeFieldKey fieldKey) {
         return dataField.containsKey(fieldKey);
     }
+
+
+    @Override
+    public TicTacToeBoard clone() {
+        Map<TicTacToeFieldKey, Player> copyMap = new HashMap<>(dataField);
+        return new TicTacToeBoard(copyMap);
+
+    }
+
+    private boolean isMoveLeft()
+    //                for each cell in board;
+//                if current cell is empty;
+//                return true;
+
+
 
 }

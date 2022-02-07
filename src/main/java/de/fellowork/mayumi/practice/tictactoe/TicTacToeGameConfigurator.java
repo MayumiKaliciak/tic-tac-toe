@@ -46,7 +46,7 @@ public class TicTacToeGameConfigurator {
                 createdPlayer = new HumanPlayer(playerSymbol, printer, collector, board);
 
             } else if ("computer".equals(selectedPlayerType)){
-                createdPlayer = new KIPlayer(playerSymbol);
+                createdPlayer = new KIPlayer(playerSymbol, board);
 
             } else {
                 printer.printFailureMessage();
