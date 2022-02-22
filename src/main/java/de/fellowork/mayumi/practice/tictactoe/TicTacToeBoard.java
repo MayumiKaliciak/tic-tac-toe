@@ -75,4 +75,9 @@ public class TicTacToeBoard implements Cloneable {
 
     }
 
+    public boolean boardIsFull() {
+        return getKeysOfFreeFields().isEmpty();
+
+    }
+
 }

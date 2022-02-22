@@ -19,7 +19,7 @@ public class TicTacToeGameConfigurator {
 
     private final TicTacToePrinter printer;
     private final TicTacToeInputCollector collector;
-    private final TicTacToeBoard board;
+    private final GameStateEvaluator evaluator;
 
     public GameConfiguration createConfiguration(){
 
@@ -46,7 +46,7 @@ public class TicTacToeGameConfigurator {
                 createdPlayer = new HumanPlayer(playerSymbol, printer, collector);
 
             } else if ("computer".equals(selectedPlayerType)){
-                createdPlayer = new KIPlayer(playerSymbol);
+                createdPlayer = new KIPlayer(playerSymbol, evaluator);
 
             } else {
                 printer.printFailureMessage();

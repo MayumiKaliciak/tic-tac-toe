@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class HumanPlayer implements Player {
 
-
     private final String playerSymbol;
     private final TicTacToePrinter printer;
     private final TicTacToeInputCollector collector;
