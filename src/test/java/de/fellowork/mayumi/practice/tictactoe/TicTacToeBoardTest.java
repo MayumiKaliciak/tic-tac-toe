@@ -4,12 +4,11 @@ import org.assertj.core.internal.Maps;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
+import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 class TicTacToeBoardTest {
-
-
 
     @Test
     void isPLayerOnField(){
@@ -17,7 +16,7 @@ class TicTacToeBoardTest {
         TicTacToeBoard board = new TicTacToeBoard();
         board.setPlayer(TicTacToeFieldKey.Nine, testPlayer);
         boolean pLayerOnField = board.isPLayerOnField(TicTacToeFieldKey.Nine, testPlayer);
-        assertTrue(pLayerOnField);
+        assertThat(pLayerOnField).isTrue();
 
     }
     @Test
@@ -28,18 +27,41 @@ class TicTacToeBoardTest {
         board.setPlayer(TicTacToeFieldKey.Nine, testPlayer);
 
         boolean pLayerOnField = board.isPLayerOnField(TicTacToeFieldKey.Nine, testPlayer);
-        assertTrue(pLayerOnField);
+        assertThat(pLayerOnField).isTrue();
         boolean pLayerNotOnField = board.isPLayerOnField(TicTacToeFieldKey.Nine, testPlayer2);
-        assertFalse(pLayerNotOnField);
+        assertThat(pLayerNotOnField).isFalse();
     }
 
     @Test
     void cloneBoard(){
         TestPlayer testPlayer = new TestPlayer();
         TicTacToeBoard board = new TicTacToeBoard();
-        board.setPlayer(TicTacToeFieldKey.Nine, testPlayer);
+        TicTacToeBoard copy = board.clone();
+        assertThat(board).isNotSameAs(copy);
+        assertThat(board).isEqualTo(copy);
 
-        assertEquals(copyMap, dataField);
+        copy.setPlayer(TicTacToeFieldKey.Nine, testPlayer);
+        assertThat(board).isNotEqualTo(copy);
+    }
+
+    @Test
+    void getFreeFields() {
+        TicTacToeBoard board = new TicTacToeBoard();
+        Set<TicTacToeFieldKey> freeFields = board.getKeysOfFreeFields();
+        int expected = TicTacToeFieldKey.toList().size();
+        assertThat(freeFields).hasSize(expected);
+
+    }
+
+
+    @Test
+    void getFreeFieldsAfterSettingField() {
+        TicTacToeBoard board = new TicTacToeBoard();
+        TestPlayer testPlayer = new TestPlayer();
+        board.setPlayer(TicTacToeFieldKey.Nine, testPlayer);
+        Set<TicTacToeFieldKey> freeFields = board.getKeysOfFreeFields();
+
+        assertThat(freeFields).doesNotContain(TicTacToeFieldKey.Nine);
 
     }
 

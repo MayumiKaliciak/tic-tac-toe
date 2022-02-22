@@ -9,7 +9,6 @@ public class HumanPlayer implements Player {
     private final String playerSymbol;
     private final TicTacToePrinter printer;
     private final TicTacToeInputCollector collector;
-    private final TicTacToeBoard board;
 
     @Override
     public TicTacToeBoard doGameMove(TicTacToeBoard board) {

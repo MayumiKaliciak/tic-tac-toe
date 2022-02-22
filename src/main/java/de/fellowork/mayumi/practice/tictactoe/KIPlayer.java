@@ -7,33 +7,34 @@ public class KIPlayer implements Player {
 
 
     private final String playerSymbol;
-    private final TicTacToeBoard board;
-    private final TicTacToeFieldKey fieldKey;
 
 
     @Override
-    public TicTacToeBoard doGameMove(TicTacToeBoard board, Player player) {
+    public TicTacToeBoard doGameMove(TicTacToeBoard board) {
+
+        TicTacToeBoard copyBoard = board.clone();
 
         int bestScore = Integer.MIN_VALUE;
-        for (int key = 1; key <= 9; key++) {
-            TicTacToeFieldKey fieldKey = key;
-            if (!board.isPLayerOnField(fieldKey, player)) {
-                board.setPlayer(fieldKey, player);
+      /**  while (copyBoard.isMoveLeft(fieldKey)) {
+            if (!copyBoard.isPLayerOnField(fieldKey, this)) {
+                copyBoard.setPlayer(fieldKey, this);
                 int score = minimax(false);
-                board.unsetPlayer(fieldKey, player);
+                copyBoard.unsetPlayer(fieldKey, this);
                 if (score > bestScore) {
                     bestScore = score;
                 }
             }
         }
         if (bestScore != Integer.MIN_VALUE) {
-            board.setPlayer(fieldKey, player);
-        }
+            board.setPlayer(fieldKey, this);
+        }**/
         return board;
     }
 
     public int minimax(boolean isMaximizingPlayer){
         int hightOfTree = 9;
+        int alpha = Integer.MIN_VALUE;
+        int beta = Integer.MAX_VALUE;
 
         if(isMaximizingPlayer) {
             // maximize

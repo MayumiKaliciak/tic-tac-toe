@@ -43,10 +43,10 @@ public class TicTacToeGameConfigurator {
             String selectedPlayerType = collector.collectPlayerType();
 
             if("human".equals(selectedPlayerType)){
-                createdPlayer = new HumanPlayer(playerSymbol, printer, collector, board);
+                createdPlayer = new HumanPlayer(playerSymbol, printer, collector);
 
             } else if ("computer".equals(selectedPlayerType)){
-                createdPlayer = new KIPlayer(playerSymbol, board);
+                createdPlayer = new KIPlayer(playerSymbol);
 
             } else {
                 printer.printFailureMessage();
