@@ -15,15 +15,11 @@ public class TicTacToePrinter {
     }
 
     public void printGameConfiguration() {
-        System.out.println("The options to play TicTacToe are: \n1: human-human\n2: human-computer\n3: computer-computer");
+        System.out.println("The options to play TicTacToe are: \n1: human-human\n2: human-computer");
     }
 
-    public void printChoosePlayerOne() {
-        System.out.println("Please select option for the first player by typing in 'human' or 'computer'");
-    }
-
-    public void printChoosePlayerTwo() {
-        System.out.println("Please select option for the second player by typing in 'human' or 'computer'");
+    public void printChoosePlayerOption() {
+        System.out.println("Please select option for the first player by typing in correct option number");
     }
 
     public void printFailureMessage() {

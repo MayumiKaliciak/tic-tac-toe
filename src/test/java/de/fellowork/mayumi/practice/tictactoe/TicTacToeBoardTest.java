@@ -4,6 +4,7 @@ import org.assertj.core.internal.Maps;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.*;
@@ -47,7 +48,7 @@ class TicTacToeBoardTest {
     @Test
     void getFreeFields() {
         TicTacToeBoard board = new TicTacToeBoard();
-        Set<TicTacToeFieldKey> freeFields = board.getKeysOfFreeFields();
+        List<TicTacToeFieldKey> freeFields = board.getKeysOfFreeFields();
         int expected = TicTacToeFieldKey.toList().size();
         assertThat(freeFields).hasSize(expected);
 
@@ -59,7 +60,7 @@ class TicTacToeBoardTest {
         TicTacToeBoard board = new TicTacToeBoard();
         TestPlayer testPlayer = new TestPlayer();
         board.setPlayer(TicTacToeFieldKey.Nine, testPlayer);
-        Set<TicTacToeFieldKey> freeFields = board.getKeysOfFreeFields();
+        List<TicTacToeFieldKey> freeFields = board.getKeysOfFreeFields();
 
         assertThat(freeFields).doesNotContain(TicTacToeFieldKey.Nine);
 

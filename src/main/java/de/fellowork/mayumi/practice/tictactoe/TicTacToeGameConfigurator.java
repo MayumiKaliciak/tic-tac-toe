@@ -24,35 +24,26 @@ public class TicTacToeGameConfigurator {
     public GameConfiguration createConfiguration(){
 
         printer.printGameConfiguration();
+        printer.printChoosePlayerOption();
 
-        printer.printChoosePlayerOne();
-        Player playerOne = getPlayer(PLAYER_SYMBOL_X);
-
-        printer.printChoosePlayerTwo();
-        Player playerTwo = getPlayer(PLAYER_SYMBOL_O);
-
-        return new GameConfiguration(playerOne, playerTwo);
-    }
-
-    private Player getPlayer(String playerSymbol) {
-
-        Player createdPlayer = null;
-
-        while(createdPlayer == null) {
+        while(true){
 
             String selectedPlayerType = collector.collectPlayerType();
 
-            if("human".equals(selectedPlayerType)){
-                createdPlayer = new HumanPlayer(playerSymbol, printer, collector);
+            if("1".equals(selectedPlayerType)){
+                Player playerOne = new HumanPlayer(PLAYER_SYMBOL_X, printer, collector);
+                Player playerTwo = new HumanPlayer(PLAYER_SYMBOL_O, printer, collector);
+                return new GameConfiguration(playerOne, playerTwo);
 
-            } else if ("computer".equals(selectedPlayerType)){
-                createdPlayer = new KIPlayer(playerSymbol, evaluator);
+            } else if ("2".equals(selectedPlayerType)){
+                Player playerOne = new HumanPlayer(PLAYER_SYMBOL_X, printer, collector);
+                Player playerTwo = new KIPlayer(PLAYER_SYMBOL_O,evaluator, playerOne);
+                return new GameConfiguration(playerOne, playerTwo);
 
             } else {
                 printer.printFailureMessage();
             }
         }
-        return createdPlayer;
     }
 
 }

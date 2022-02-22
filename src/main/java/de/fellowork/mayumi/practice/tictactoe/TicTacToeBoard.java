@@ -67,11 +67,11 @@ public class TicTacToeBoard implements Cloneable {
 
     }
 
-    public Set<TicTacToeFieldKey> getKeysOfFreeFields() {
+    public List<TicTacToeFieldKey> getKeysOfFreeFields() {
         return TicTacToeFieldKey.toList()
                 .stream()
                 .filter(key -> !hasPlayerSet(key))
-                .collect(toSet());
+                .toList();
 
     }
 

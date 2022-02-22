@@ -40,7 +40,7 @@ public class KIPlayer implements Player {
 
     public int minimax(boolean isMaximizingPlayer, int depth, TicTacToeBoard copyBoard) {
         //System.out.println("maximizing player "+isMaximizingPlayer + " Depth: " + depth);
-        if (evaluator.checkPLayerWinningStatus(this, copyBoard)) {
+        if (evaluator.checkPLayerWinningStatus(isMaximizingPlayer ? this : opponent, copyBoard)) {
             int evaluate = evaluate(isMaximizingPlayer);
            // System.out.println("Evaluated Score: "+evaluate + " Depth: " + depth);
 
@@ -67,10 +67,10 @@ public class KIPlayer implements Player {
         int bestScore = Integer.MIN_VALUE;
 
         for (TicTacToeFieldKey fieldKey : copyBoard.getKeysOfFreeFields()) {
-            if (!copyBoard.isPLayerOnField(fieldKey, opponent)) {
-                copyBoard.setPlayer(fieldKey, opponent);
+            if (!copyBoard.isPLayerOnField(fieldKey, this)) {
+                copyBoard.setPlayer(fieldKey, this);
                 int score = minimax(false, hightOfTree - 1, copyBoard);
-                copyBoard.unsetPlayer(fieldKey, opponent);
+                copyBoard.unsetPlayer(fieldKey, this);
                 bestScore = Integer.max(bestScore, score);
             }
         }
@@ -83,10 +83,10 @@ public class KIPlayer implements Player {
         int bestScore = Integer.MAX_VALUE;
 
         for (TicTacToeFieldKey fieldKey : copyBoard.getKeysOfFreeFields()) {
-            if (!copyBoard.isPLayerOnField(fieldKey, this)) {
-                copyBoard.setPlayer(fieldKey, this);
+            if (!copyBoard.isPLayerOnField(fieldKey, opponent)) {
+                copyBoard.setPlayer(fieldKey, opponent);
                 int score = minimax(true, hightOfTree - 1, copyBoard);
-                copyBoard.unsetPlayer(fieldKey, this);
+                copyBoard.unsetPlayer(fieldKey, opponent);
                 bestScore = Integer.min(bestScore, score);
             }
         }
