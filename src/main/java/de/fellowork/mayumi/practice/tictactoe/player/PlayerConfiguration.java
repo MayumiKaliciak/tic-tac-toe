@@ -5,7 +5,7 @@ import lombok.Value;
 @Value
 public class PlayerConfiguration {
 
-   Player playerOne;
-   Player playerTwo;
+    Player playerOne;
+    Player playerTwo;
 
 }

@@ -1,13 +1,5 @@
 package de.fellowork.mayumi.practice.tictactoe;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 class TicTacToeGameConfiguratorTest {
 
 //    TicTacToeGameConfigurator configurator = new TicTacToeGameConfigurator();
@@ -20,6 +12,5 @@ class TicTacToeGameConfiguratorTest {
 //        GameConfiguration conf = configurator.createConfiguration();
 
 
-
-    }
+}
 

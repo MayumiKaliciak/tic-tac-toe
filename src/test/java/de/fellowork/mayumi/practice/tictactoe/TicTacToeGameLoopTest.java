@@ -10,15 +10,16 @@ import org.mockito.InOrder;
 
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.Mockito.*;
 
 class TicTacToeGameLoopTest {
 
     private TicTacToeBoard board;
     private GameStateEvaluator evaluator;
-    private TicTacToePrinter printer ;
-    private Player playerOne ;
+    private TicTacToePrinter printer;
+    private Player playerOne;
     private Player playerTwo;
     private PlayerConfiguration config;
     private TicTacToeGameLoop loop;
@@ -55,12 +56,12 @@ class TicTacToeGameLoopTest {
         assertThat(winner).isEmpty();
 
         InOrder inOrder = inOrder(printer, board);
-        inOrder.verify(printer,times(1)).printStartPlayInfo();
-        inOrder.verify(board,times(1)).boardIsFull();
-        inOrder.verify(printer,times(1)).printOutDraw();
+        inOrder.verify(printer, times(1)).printStartPlayInfo();
+        inOrder.verify(board, times(1)).boardIsFull();
+        inOrder.verify(printer, times(1)).printOutDraw();
 
         verifyNoMoreInteractions(printer);
-        verifyNoInteractions(evaluator,playerOne,playerTwo);
+        verifyNoInteractions(evaluator, playerOne, playerTwo);
 
     }
 
@@ -69,18 +70,18 @@ class TicTacToeGameLoopTest {
 
         when(board.boardIsFull()).thenReturn(false);
         when(playerOne.doGameMove(board)).thenReturn(board);
-        when(evaluator.checkPLayerWinningStatus(playerOne,board)).thenReturn(true);
+        when(evaluator.checkPLayerWinningStatus(playerOne, board)).thenReturn(true);
 
         Optional<Player> winner = loop.run(board, config);
         assertThat(winner).isPresent();
         assertThat(winner.get()).isEqualTo(playerOne);
 
         InOrder inOrder = inOrder(printer, board);
-        inOrder.verify(printer,times(1)).printStartPlayInfo();
-        inOrder.verify(board,times(1)).boardIsFull();
-        inOrder.verify(printer,times(1)).printGameMoveRequest();
-        inOrder.verify(printer,times(1)).printBoardToConsole(board);
-        inOrder.verify(printer,times(1)).printPlayerWon(playerOne);
+        inOrder.verify(printer, times(1)).printStartPlayInfo();
+        inOrder.verify(board, times(1)).boardIsFull();
+        inOrder.verify(printer, times(1)).printGameMoveRequest();
+        inOrder.verify(printer, times(1)).printBoardToConsole(board);
+        inOrder.verify(printer, times(1)).printPlayerWon(playerOne);
 
     }
 
@@ -89,9 +90,9 @@ class TicTacToeGameLoopTest {
 
         when(board.boardIsFull()).thenReturn(false, false);
         when(playerOne.doGameMove(board)).thenReturn(board);
-        when(evaluator.checkPLayerWinningStatus(playerOne,board)).thenReturn(false);
+        when(evaluator.checkPLayerWinningStatus(playerOne, board)).thenReturn(false);
         when(playerTwo.doGameMove(board)).thenReturn(board);
-        when(evaluator.checkPLayerWinningStatus(playerTwo,board)).thenReturn(true);
+        when(evaluator.checkPLayerWinningStatus(playerTwo, board)).thenReturn(true);
 
         Optional<Player> winner = loop.run(board, config);
         assertThat(winner).isPresent();
@@ -100,16 +101,16 @@ class TicTacToeGameLoopTest {
         InOrder inOrder = inOrder(printer, board);
 
         //first loop iteration for PlayerOne (does not win)
-        inOrder.verify(printer,times(1)).printStartPlayInfo();
-        inOrder.verify(board,times(1)).boardIsFull();
-        inOrder.verify(printer,times(1)).printGameMoveRequest();
-        inOrder.verify(printer,times(1)).printBoardToConsole(board);
+        inOrder.verify(printer, times(1)).printStartPlayInfo();
+        inOrder.verify(board, times(1)).boardIsFull();
+        inOrder.verify(printer, times(1)).printGameMoveRequest();
+        inOrder.verify(printer, times(1)).printBoardToConsole(board);
 
         //second loop iteration for PlayerTwo (does win)
-        inOrder.verify(board,times(1)).boardIsFull();
-        inOrder.verify(printer,times(1)).printGameMoveRequest();
-        inOrder.verify(printer,times(1)).printBoardToConsole(board);
-        inOrder.verify(printer,times(1)).printPlayerWon(playerTwo);
+        inOrder.verify(board, times(1)).boardIsFull();
+        inOrder.verify(printer, times(1)).printGameMoveRequest();
+        inOrder.verify(printer, times(1)).printBoardToConsole(board);
+        inOrder.verify(printer, times(1)).printPlayerWon(playerTwo);
     }
 
 

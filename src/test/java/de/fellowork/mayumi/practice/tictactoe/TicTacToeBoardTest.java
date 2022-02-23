@@ -2,45 +2,68 @@ package de.fellowork.mayumi.practice.tictactoe;
 
 import de.fellowork.mayumi.practice.tictactoe.board.TicTacToeBoard;
 import de.fellowork.mayumi.practice.tictactoe.board.TicTacToeFieldKey;
+import de.fellowork.mayumi.practice.tictactoe.player.Player;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static de.fellowork.mayumi.practice.tictactoe.player.PlayerSymbol.PLAYER_SYMBOL_O;
+import static de.fellowork.mayumi.practice.tictactoe.player.PlayerSymbol.PLAYER_SYMBOL_X;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class TicTacToeBoardTest {
 
+    private Player playerOne;
+    private Player playerTwo;
+
+    @BeforeEach
+    void setUp() {
+
+        playerOne = mock(Player.class);
+        when(playerOne.getPlayerSymbol()).thenReturn(PLAYER_SYMBOL_X);
+        when(playerOne.compareSymbols(any())).thenCallRealMethod();
+
+        playerTwo = mock(Player.class);
+        when(playerTwo.getPlayerSymbol()).thenReturn(PLAYER_SYMBOL_O);
+        when(playerTwo.compareSymbols(any())).thenCallRealMethod();
+
+    }
+
     @Test
-    void isPLayerOnField(){
-        TestPlayer testPlayer = new TestPlayer();
+    void isPLayerOnField() {
+
         TicTacToeBoard board = new TicTacToeBoard();
-        board.setPlayer(TicTacToeFieldKey.Nine, testPlayer);
-        boolean pLayerOnField = board.isPLayerOnField(TicTacToeFieldKey.Nine, testPlayer);
+        board.setPlayer(TicTacToeFieldKey.Nine, playerOne);
+        boolean pLayerOnField = board.isPLayerOnField(TicTacToeFieldKey.Nine, playerOne);
         assertThat(pLayerOnField).isTrue();
 
     }
-    @Test
-    void secondPLayerOnField(){
-        TestPlayer testPlayer = new TestPlayer();
-        TestPlayer testPlayer2 = new TestPlayer();
-        TicTacToeBoard board = new TicTacToeBoard();
-        board.setPlayer(TicTacToeFieldKey.Nine, testPlayer);
 
-        boolean pLayerOnField = board.isPLayerOnField(TicTacToeFieldKey.Nine, testPlayer);
+    @Test
+    void secondPLayerOnField() {
+
+        TicTacToeBoard board = new TicTacToeBoard();
+        board.setPlayer(TicTacToeFieldKey.Nine, playerOne);
+
+        boolean pLayerOnField = board.isPLayerOnField(TicTacToeFieldKey.Nine, playerOne);
         assertThat(pLayerOnField).isTrue();
-        boolean pLayerNotOnField = board.isPLayerOnField(TicTacToeFieldKey.Nine, testPlayer2);
+        boolean pLayerNotOnField = board.isPLayerOnField(TicTacToeFieldKey.Nine, playerTwo);
         assertThat(pLayerNotOnField).isFalse();
     }
 
     @Test
-    void cloneBoard(){
-        TestPlayer testPlayer = new TestPlayer();
+    void cloneBoard() {
+
         TicTacToeBoard board = new TicTacToeBoard();
         TicTacToeBoard copy = board.clone();
         assertThat(board).isNotSameAs(copy);
         assertThat(board).isEqualTo(copy);
 
-        copy.setPlayer(TicTacToeFieldKey.Nine, testPlayer);
+        copy.setPlayer(TicTacToeFieldKey.Nine, playerOne);
         assertThat(board).isNotEqualTo(copy);
     }
 
@@ -57,8 +80,8 @@ class TicTacToeBoardTest {
     @Test
     void getFreeFieldsAfterSettingField() {
         TicTacToeBoard board = new TicTacToeBoard();
-        TestPlayer testPlayer = new TestPlayer();
-        board.setPlayer(TicTacToeFieldKey.Nine, testPlayer);
+
+        board.setPlayer(TicTacToeFieldKey.Nine, playerOne);
         List<TicTacToeFieldKey> freeFields = board.getKeysOfFreeFields();
 
         assertThat(freeFields).doesNotContain(TicTacToeFieldKey.Nine);

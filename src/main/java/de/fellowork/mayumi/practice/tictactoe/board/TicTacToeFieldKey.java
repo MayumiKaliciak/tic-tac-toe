@@ -25,11 +25,11 @@ public enum TicTacToeFieldKey {
         this.numberAsString = numberAsString;
     }
 
-    public static List<TicTacToeFieldKey> toList(){
+    public static List<TicTacToeFieldKey> toList() {
         return Arrays.asList(values());
     }
 
-    public static Optional<TicTacToeFieldKey> findByNumberString(String numberAsString){
+    public static Optional<TicTacToeFieldKey> findByNumberString(String numberAsString) {
         return toList().stream()
                 .filter(key -> numberAsString.equals(key.getNumberAsString()))
                 .findFirst();

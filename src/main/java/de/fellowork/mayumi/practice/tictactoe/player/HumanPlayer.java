@@ -18,9 +18,9 @@ class HumanPlayer implements Player {
 
         // make pretty
         TicTacToeFieldKey currentKey = null;
-        while(currentKey == null){
+        while (currentKey == null) {
             currentKey = collector.collectGameMove();
-            if(currentKey == null){
+            if (currentKey == null) {
                 printer.invalidGameFieldKeyEntered();
             }
         }

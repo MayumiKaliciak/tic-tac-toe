@@ -2,14 +2,15 @@ package de.fellowork.mayumi.practice.tictactoe;
 
 import de.fellowork.mayumi.practice.tictactoe.board.TicTacToeBoard;
 import de.fellowork.mayumi.practice.tictactoe.output.TicTacToePrinter;
-import de.fellowork.mayumi.practice.tictactoe.player.PlayerConfiguration;
 import de.fellowork.mayumi.practice.tictactoe.player.Player;
+import de.fellowork.mayumi.practice.tictactoe.player.PlayerConfiguration;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 
 import java.util.Optional;
 
-import static java.util.Optional.*;
+import static java.util.Optional.empty;
+import static java.util.Optional.of;
 
 @AllArgsConstructor
 public class TicTacToeGameLoop {
@@ -25,18 +26,18 @@ public class TicTacToeGameLoop {
         printer.printStartPlayInfo();
 
         int gameRounds = 1;
-        while(!board.boardIsFull()) {
+        while (!board.boardIsFull()) {
 
             if (gameRounds % 2 != 0) {
                 board = doPlayerMove(board, playerOne);
-                if(evaluator.checkPLayerWinningStatus(playerOne, board)){
+                if (evaluator.checkPLayerWinningStatus(playerOne, board)) {
                     printer.printPlayerWon(playerOne);
                     return of(playerOne);
                 }
 
             } else {
                 board = doPlayerMove(board, playerTwo);
-                if(evaluator.checkPLayerWinningStatus(playerTwo, board)){
+                if (evaluator.checkPLayerWinningStatus(playerTwo, board)) {
                     printer.printPlayerWon(playerTwo);
                     return of(playerTwo);
                 }

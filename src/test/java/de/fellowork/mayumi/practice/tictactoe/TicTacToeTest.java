@@ -7,13 +7,14 @@ import org.junit.jupiter.api.Test;
 import java.util.Optional;
 
 import static de.fellowork.mayumi.practice.tictactoe.board.TicTacToeFieldKey.*;
-import static org.assertj.core.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class TicTacToeTest {
 
     @Test
-    void runGameKIPlayerVsKIPlayer(){
+    void runGameKIPlayerVsKIPlayer() {
         TicTacToeInputCollector collectorMock = mock(TicTacToeInputCollector.class);
         when(collectorMock.collectPlayerType()).thenReturn("3");
         TicTacToe tictactoe = new TicTacToe();
@@ -37,7 +38,7 @@ class TicTacToeTest {
 
         TicTacToeInputCollector collectorMock = getInputMockHumanVsHuman();
 
-        when(collectorMock.collectGameMove()).thenReturn(Three,Four, Two, Nine, One);
+        when(collectorMock.collectGameMove()).thenReturn(Three, Four, Two, Nine, One);
 
         Optional<Player> winner = runTicTacToe(collectorMock);
         assertThat(winner).isPresent();

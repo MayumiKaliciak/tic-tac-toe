@@ -3,7 +3,9 @@ package de.fellowork.mayumi.practice.tictactoe.board;
 import de.fellowork.mayumi.practice.tictactoe.player.Player;
 import lombok.EqualsAndHashCode;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * datenhaltung des spielzustands
