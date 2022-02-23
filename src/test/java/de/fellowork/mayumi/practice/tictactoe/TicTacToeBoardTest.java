@@ -1,11 +1,10 @@
 package de.fellowork.mayumi.practice.tictactoe;
 
-import org.assertj.core.internal.Maps;
+import de.fellowork.mayumi.practice.tictactoe.board.TicTacToeBoard;
+import de.fellowork.mayumi.practice.tictactoe.board.TicTacToeFieldKey;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 import static org.assertj.core.api.Assertions.*;
 

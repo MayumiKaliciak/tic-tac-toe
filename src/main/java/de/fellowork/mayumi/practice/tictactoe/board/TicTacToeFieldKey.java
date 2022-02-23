@@ -1,4 +1,4 @@
-package de.fellowork.mayumi.practice.tictactoe;
+package de.fellowork.mayumi.practice.tictactoe.board;
 
 import lombok.Getter;
 

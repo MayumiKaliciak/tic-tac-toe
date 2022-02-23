@@ -1,12 +1,9 @@
-package de.fellowork.mayumi.practice.tictactoe;
+package de.fellowork.mayumi.practice.tictactoe.board;
 
+import de.fellowork.mayumi.practice.tictactoe.player.Player;
 import lombok.EqualsAndHashCode;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
-import static java.util.stream.Collectors.*;
 
 /**
  * datenhaltung des spielzustands
@@ -35,7 +32,7 @@ public class TicTacToeBoard implements Cloneable {
         if (!hasPlayerSet(fieldKey)) {
             return false;
         }
-        return player != null && player == getPlayer(fieldKey);
+        return player != null && player.compareSymbols(getPlayer(fieldKey));
     }
 
 

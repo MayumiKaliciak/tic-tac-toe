@@ -1,5 +1,7 @@
 package de.fellowork.mayumi.practice.tictactoe;
 
+import de.fellowork.mayumi.practice.tictactoe.board.TicTacToeBoard;
+import de.fellowork.mayumi.practice.tictactoe.output.TicTacToePrinter;
 import org.junit.jupiter.api.Test;
 
 /**

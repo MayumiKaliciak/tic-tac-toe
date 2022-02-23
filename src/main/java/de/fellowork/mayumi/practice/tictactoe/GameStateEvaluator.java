@@ -1,8 +1,10 @@
 package de.fellowork.mayumi.practice.tictactoe;
 
+import de.fellowork.mayumi.practice.tictactoe.board.TicTacToeBoard;
+import de.fellowork.mayumi.practice.tictactoe.player.Player;
 import lombok.AllArgsConstructor;
 
-import static de.fellowork.mayumi.practice.tictactoe.TicTacToeFieldKey.*;
+import static de.fellowork.mayumi.practice.tictactoe.board.TicTacToeFieldKey.*;
 
 @AllArgsConstructor
 public class GameStateEvaluator {

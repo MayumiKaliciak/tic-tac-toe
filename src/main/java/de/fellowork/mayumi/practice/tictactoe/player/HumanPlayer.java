@@ -1,11 +1,15 @@
-package de.fellowork.mayumi.practice.tictactoe;
+package de.fellowork.mayumi.practice.tictactoe.player;
 
+import de.fellowork.mayumi.practice.tictactoe.board.TicTacToeBoard;
+import de.fellowork.mayumi.practice.tictactoe.board.TicTacToeFieldKey;
+import de.fellowork.mayumi.practice.tictactoe.input.TicTacToeInputCollector;
+import de.fellowork.mayumi.practice.tictactoe.output.TicTacToePrinter;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class HumanPlayer implements Player {
+class HumanPlayer implements Player {
 
-    private final String playerSymbol;
+    private final PlayerSymbol playerSymbol;
     private final TicTacToePrinter printer;
     private final TicTacToeInputCollector collector;
 
@@ -26,7 +30,7 @@ public class HumanPlayer implements Player {
     }
 
     @Override
-    public String getPlayerSymbol() {
+    public PlayerSymbol getPlayerSymbol() {
         return playerSymbol;
     }
 }

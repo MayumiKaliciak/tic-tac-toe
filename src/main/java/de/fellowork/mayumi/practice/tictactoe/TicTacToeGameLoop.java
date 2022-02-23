@@ -1,5 +1,9 @@
 package de.fellowork.mayumi.practice.tictactoe;
 
+import de.fellowork.mayumi.practice.tictactoe.board.TicTacToeBoard;
+import de.fellowork.mayumi.practice.tictactoe.output.TicTacToePrinter;
+import de.fellowork.mayumi.practice.tictactoe.player.PlayerConfiguration;
+import de.fellowork.mayumi.practice.tictactoe.player.Player;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -8,7 +12,7 @@ public class TicTacToeGameLoop {
     private final TicTacToePrinter printer;
     private final GameStateEvaluator evaluator;
 
-    public void run(TicTacToeBoard board,GameConfiguration gameConfiguration) {
+    public void run(TicTacToeBoard board, PlayerConfiguration gameConfiguration) {
 
         Player playerOne = gameConfiguration.getPlayerOne();
         Player playerTwo = gameConfiguration.getPlayerTwo();

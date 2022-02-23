@@ -1,4 +1,6 @@
-package de.fellowork.mayumi.practice.tictactoe;
+package de.fellowork.mayumi.practice.tictactoe.input;
+
+import de.fellowork.mayumi.practice.tictactoe.board.TicTacToeFieldKey;
 
 import java.util.Scanner;
 

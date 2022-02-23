@@ -1,4 +1,8 @@
-package de.fellowork.mayumi.practice.tictactoe;
+package de.fellowork.mayumi.practice.tictactoe.output;
+
+import de.fellowork.mayumi.practice.tictactoe.board.TicTacToeBoard;
+import de.fellowork.mayumi.practice.tictactoe.board.TicTacToeFieldKey;
+import de.fellowork.mayumi.practice.tictactoe.player.Player;
 
 /**
  * alles zum spielbrett ausgeben oder züge
@@ -15,7 +19,11 @@ public class TicTacToePrinter {
     }
 
     public void printGameConfiguration() {
-        System.out.println("The options to play TicTacToe are: \n1: human-human\n2: human-computer");
+        System.out.println("The options to play TicTacToe are: \n1: human-human\n2: human-computer\n3: computer-computer");
+    }
+
+    public void printChoosePlayerOne() {
+        System.out.println("Please select option for the first player by typing in 'human' or 'computer'");
     }
 
     public void printChoosePlayerOption() {
@@ -48,7 +56,7 @@ public class TicTacToePrinter {
     }
 
     private String putPlayerSymbolIntoBoardToPrint(String printedTicTacToe, TicTacToeFieldKey key, Player player) {
-        printedTicTacToe = printedTicTacToe.replace(key.getNumberAsString(), player.getPlayerSymbol());
+        printedTicTacToe = printedTicTacToe.replace(key.getNumberAsString(), player.getPlayerSymbol().getSymbolAsString());
         return printedTicTacToe;
     }
 
