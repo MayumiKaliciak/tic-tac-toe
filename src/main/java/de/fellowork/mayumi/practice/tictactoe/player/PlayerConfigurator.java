@@ -1,6 +1,7 @@
 package de.fellowork.mayumi.practice.tictactoe.player;
 
 import de.fellowork.mayumi.practice.tictactoe.GameStateEvaluator;
+import de.fellowork.mayumi.practice.tictactoe.input.DefaultInputCollector;
 import de.fellowork.mayumi.practice.tictactoe.input.TicTacToeInputCollector;
 import de.fellowork.mayumi.practice.tictactoe.output.TicTacToePrinter;
 import lombok.AllArgsConstructor;

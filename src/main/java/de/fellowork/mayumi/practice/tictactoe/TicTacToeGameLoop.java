@@ -12,7 +12,7 @@ public class TicTacToeGameLoop {
     private final TicTacToePrinter printer;
     private final GameStateEvaluator evaluator;
 
-    public void run(TicTacToeBoard board, PlayerConfiguration gameConfiguration) {
+    public Player run(TicTacToeBoard board, PlayerConfiguration gameConfiguration) {
 
         Player playerOne = gameConfiguration.getPlayerOne();
         Player playerTwo = gameConfiguration.getPlayerTwo();
@@ -26,19 +26,20 @@ public class TicTacToeGameLoop {
                 board = doPlayerMove(board, playerOne);
                 if(evaluator.checkPLayerWinningStatus(playerOne, board)){
                     printer.printPlayerWon(playerOne);
-                    return;
+                    return playerOne;
                 }
 
             } else {
                 board = doPlayerMove(board, playerTwo);
                 if(evaluator.checkPLayerWinningStatus(playerTwo, board)){
                     printer.printPlayerWon(playerTwo);
-                    return;
+                    return playerTwo ;
                 }
 
             }
         }
         printer.printOutDraw();
+        return null;
 
     }
 

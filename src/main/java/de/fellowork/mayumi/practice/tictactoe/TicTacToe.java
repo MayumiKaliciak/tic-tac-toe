@@ -1,8 +1,10 @@
 package de.fellowork.mayumi.practice.tictactoe;
 
 import de.fellowork.mayumi.practice.tictactoe.board.TicTacToeBoard;
+import de.fellowork.mayumi.practice.tictactoe.input.DefaultInputCollector;
 import de.fellowork.mayumi.practice.tictactoe.input.TicTacToeInputCollector;
 import de.fellowork.mayumi.practice.tictactoe.output.TicTacToePrinter;
+import de.fellowork.mayumi.practice.tictactoe.player.Player;
 import de.fellowork.mayumi.practice.tictactoe.player.PlayerConfiguration;
 import de.fellowork.mayumi.practice.tictactoe.player.PlayerConfigurator;
 
@@ -12,18 +14,19 @@ import de.fellowork.mayumi.practice.tictactoe.player.PlayerConfigurator;
  */
 public class TicTacToe {
 
-    public void startGame() {
+    public Player startGame(TicTacToeInputCollector collector) {
 
         TicTacToePrinter printer = new TicTacToePrinter();
-        TicTacToeInputCollector collector = new TicTacToeInputCollector();
         GameStateEvaluator evaluator = new GameStateEvaluator();
         PlayerConfigurator configurator = new PlayerConfigurator(printer, collector, evaluator);
         PlayerConfiguration configuration = configurator.createConfiguration();
 
         TicTacToeGameLoop loop = new TicTacToeGameLoop(printer, evaluator);
 
-        loop.run(new TicTacToeBoard(),configuration);
+        return loop.run(new TicTacToeBoard(),configuration);
+    }
 
-
+    public Player startGame() {
+        return startGame(new DefaultInputCollector());
     }
 }
