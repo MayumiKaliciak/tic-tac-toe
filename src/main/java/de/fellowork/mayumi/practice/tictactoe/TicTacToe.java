@@ -8,13 +8,15 @@ import de.fellowork.mayumi.practice.tictactoe.player.Player;
 import de.fellowork.mayumi.practice.tictactoe.player.PlayerConfiguration;
 import de.fellowork.mayumi.practice.tictactoe.player.PlayerConfigurator;
 
+import java.util.Optional;
+
 /**
  *
  * baut das spiel zusammen und startet es
  */
 public class TicTacToe {
 
-    public Player startGame(TicTacToeInputCollector collector) {
+    public Optional<Player> startGame(TicTacToeInputCollector collector) {
 
         TicTacToePrinter printer = new TicTacToePrinter();
         GameStateEvaluator evaluator = new GameStateEvaluator();
@@ -26,7 +28,7 @@ public class TicTacToe {
         return loop.run(new TicTacToeBoard(),configuration);
     }
 
-    public Player startGame() {
-        return startGame(new DefaultInputCollector());
+    public void startGame() {
+        startGame(new DefaultInputCollector());
     }
 }

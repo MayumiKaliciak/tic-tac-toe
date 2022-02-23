@@ -36,20 +36,18 @@ public class TicTacToeBoard implements Cloneable {
     }
 
 
-    public boolean setPlayer(TicTacToeFieldKey fieldKey, Player player) {
+    public void setPlayer(TicTacToeFieldKey fieldKey, Player player) {
         if (hasPlayerSet(fieldKey)) {
-            return false;
+            return;
         }
         dataField.put(fieldKey, player);
-        return true;
     }
 
-    public boolean unsetPlayer(TicTacToeFieldKey fieldKey, Player player) {
+    public void unsetPlayer(TicTacToeFieldKey fieldKey, Player player) {
         if (!hasPlayerSet(fieldKey)) {
-            return false;
+            return;
         }
         dataField.remove(fieldKey, player);
-        return true;
     }
 
     private boolean hasPlayerSet(TicTacToeFieldKey fieldKey) {

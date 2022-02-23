@@ -5,6 +5,11 @@ import de.fellowork.mayumi.practice.tictactoe.output.TicTacToePrinter;
 import de.fellowork.mayumi.practice.tictactoe.player.PlayerConfiguration;
 import de.fellowork.mayumi.practice.tictactoe.player.Player;
 import lombok.AllArgsConstructor;
+import lombok.NonNull;
+
+import java.util.Optional;
+
+import static java.util.Optional.*;
 
 @AllArgsConstructor
 public class TicTacToeGameLoop {
@@ -12,34 +17,35 @@ public class TicTacToeGameLoop {
     private final TicTacToePrinter printer;
     private final GameStateEvaluator evaluator;
 
-    public Player run(TicTacToeBoard board, PlayerConfiguration gameConfiguration) {
+    public Optional<Player> run(@NonNull TicTacToeBoard board, @NonNull PlayerConfiguration gameConfiguration) {
 
         Player playerOne = gameConfiguration.getPlayerOne();
         Player playerTwo = gameConfiguration.getPlayerTwo();
 
         printer.printStartPlayInfo();
 
-        for (int gameRounds = 1; gameRounds <=9 ; gameRounds++) {
-
+        int gameRounds = 1;
+        while(!board.boardIsFull()) {
 
             if (gameRounds % 2 != 0) {
                 board = doPlayerMove(board, playerOne);
                 if(evaluator.checkPLayerWinningStatus(playerOne, board)){
                     printer.printPlayerWon(playerOne);
-                    return playerOne;
+                    return of(playerOne);
                 }
 
             } else {
                 board = doPlayerMove(board, playerTwo);
                 if(evaluator.checkPLayerWinningStatus(playerTwo, board)){
                     printer.printPlayerWon(playerTwo);
-                    return playerTwo ;
+                    return of(playerTwo);
                 }
 
             }
+            gameRounds++;
         }
         printer.printOutDraw();
-        return null;
+        return empty();
 
     }
 

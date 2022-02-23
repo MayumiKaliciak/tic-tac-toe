@@ -1,16 +1,10 @@
 package de.fellowork.mayumi.practice.tictactoe;
 
-import de.fellowork.mayumi.practice.tictactoe.board.TicTacToeBoard;
-import de.fellowork.mayumi.practice.tictactoe.board.TicTacToeFieldKey;
 import de.fellowork.mayumi.practice.tictactoe.input.TicTacToeInputCollector;
-import de.fellowork.mayumi.practice.tictactoe.output.TicTacToePrinter;
 import de.fellowork.mayumi.practice.tictactoe.player.Player;
-import de.fellowork.mayumi.practice.tictactoe.player.PlayerConfiguration;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Timeout;
-import org.mockito.Mockito;
 
-import java.time.Duration;
+import java.util.Optional;
 
 import static de.fellowork.mayumi.practice.tictactoe.board.TicTacToeFieldKey.*;
 import static org.assertj.core.api.Assertions.*;
@@ -33,8 +27,8 @@ class TicTacToeTest {
 
         when(collectorMock.collectGameMove()).thenReturn(One, Three, Two, Four, Six, Five, Seven, Eight, Nine);
 
-        Player winner = runTicTacToe(collectorMock);
-        assertThat(winner).isNull();
+        Optional<Player> winner = runTicTacToe(collectorMock);
+        assertThat(winner).isEmpty();
 
     }
 
@@ -45,15 +39,14 @@ class TicTacToeTest {
 
         when(collectorMock.collectGameMove()).thenReturn(Three,Four, Two, Nine, One);
 
-        Player winner = runTicTacToe(collectorMock);
-        assertThat(winner).isNotNull();
+        Optional<Player> winner = runTicTacToe(collectorMock);
+        assertThat(winner).isPresent();
 
     }
 
-    private Player runTicTacToe(TicTacToeInputCollector collectorMock) {
+    private Optional<Player> runTicTacToe(TicTacToeInputCollector collectorMock) {
         TicTacToe tictactoe = new TicTacToe();
-        Player winner = tictactoe.startGame(collectorMock);
-        return winner;
+        return tictactoe.startGame(collectorMock);
     }
 
     private TicTacToeInputCollector getInputMockHumanVsHuman() {
