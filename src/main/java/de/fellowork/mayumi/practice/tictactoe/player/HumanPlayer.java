@@ -6,6 +6,8 @@ import de.fellowork.mayumi.practice.tictactoe.input.TicTacToeInputCollector;
 import de.fellowork.mayumi.practice.tictactoe.output.TicTacToePrinter;
 import lombok.AllArgsConstructor;
 
+import java.util.Optional;
+
 @AllArgsConstructor
 class HumanPlayer implements Player {
 
@@ -16,17 +18,18 @@ class HumanPlayer implements Player {
     @Override
     public TicTacToeBoard doGameMove(TicTacToeBoard board) {
 
-        // make pretty
-        TicTacToeFieldKey currentKey = null;
-        while (currentKey == null) {
-            currentKey = collector.collectGameMove();
-            if (currentKey == null) {
-                printer.invalidGameFieldKeyEntered();
+        Optional<TicTacToeFieldKey> currentGameMove = collector.collectGameMove();
+
+        if(currentGameMove.isPresent()){
+            TicTacToeFieldKey key = currentGameMove.get();
+            if(!board.hasPlayerSet(key)){
+                board.setPlayer(key, this);
+                return board;
             }
         }
-        board.setPlayer(currentKey, this);
+        printer.invalidGameFieldKeyEntered();
+        return doGameMove(board);
 
-        return board;
     }
 
     @Override

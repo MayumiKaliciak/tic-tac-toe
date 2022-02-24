@@ -2,6 +2,7 @@ package de.fellowork.mayumi.practice.tictactoe.input;
 
 import de.fellowork.mayumi.practice.tictactoe.board.TicTacToeFieldKey;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 public class DefaultInputCollector implements TicTacToeInputCollector {
@@ -14,8 +15,8 @@ public class DefaultInputCollector implements TicTacToeInputCollector {
     }
 
     @Override
-    public TicTacToeFieldKey collectGameMove() {
+    public Optional<TicTacToeFieldKey> collectGameMove() {
         String scannedLine = scanner.nextLine();
-        return TicTacToeFieldKey.findByNumberString(scannedLine).orElse(null);
+        return TicTacToeFieldKey.findByNumberString(scannedLine);
     }
 }

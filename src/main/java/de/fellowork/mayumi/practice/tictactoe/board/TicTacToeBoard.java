@@ -52,7 +52,7 @@ public class TicTacToeBoard implements Cloneable {
         dataField.remove(fieldKey, player);
     }
 
-    private boolean hasPlayerSet(TicTacToeFieldKey fieldKey) {
+    public boolean hasPlayerSet(TicTacToeFieldKey fieldKey) {
         return dataField.containsKey(fieldKey);
     }
 

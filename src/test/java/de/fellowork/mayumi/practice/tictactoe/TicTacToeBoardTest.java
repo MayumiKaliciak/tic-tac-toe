@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static de.fellowork.mayumi.practice.tictactoe.board.TicTacToeFieldKey.*;
 import static de.fellowork.mayumi.practice.tictactoe.player.PlayerSymbol.PLAYER_SYMBOL_O;
 import static de.fellowork.mayumi.practice.tictactoe.player.PlayerSymbol.PLAYER_SYMBOL_X;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -37,8 +38,8 @@ class TicTacToeBoardTest {
     void isPLayerOnField() {
 
         TicTacToeBoard board = new TicTacToeBoard();
-        board.setPlayer(TicTacToeFieldKey.Nine, playerOne);
-        boolean pLayerOnField = board.isPLayerOnField(TicTacToeFieldKey.Nine, playerOne);
+        board.setPlayer(Nine, playerOne);
+        boolean pLayerOnField = board.isPLayerOnField(Nine, playerOne);
         assertThat(pLayerOnField).isTrue();
 
     }
@@ -47,11 +48,11 @@ class TicTacToeBoardTest {
     void secondPLayerOnField() {
 
         TicTacToeBoard board = new TicTacToeBoard();
-        board.setPlayer(TicTacToeFieldKey.Nine, playerOne);
+        board.setPlayer(Nine, playerOne);
 
-        boolean pLayerOnField = board.isPLayerOnField(TicTacToeFieldKey.Nine, playerOne);
+        boolean pLayerOnField = board.isPLayerOnField(Nine, playerOne);
         assertThat(pLayerOnField).isTrue();
-        boolean pLayerNotOnField = board.isPLayerOnField(TicTacToeFieldKey.Nine, playerTwo);
+        boolean pLayerNotOnField = board.isPLayerOnField(Nine, playerTwo);
         assertThat(pLayerNotOnField).isFalse();
     }
 
@@ -63,7 +64,7 @@ class TicTacToeBoardTest {
         assertThat(board).isNotSameAs(copy);
         assertThat(board).isEqualTo(copy);
 
-        copy.setPlayer(TicTacToeFieldKey.Nine, playerOne);
+        copy.setPlayer(Nine, playerOne);
         assertThat(board).isNotEqualTo(copy);
     }
 
@@ -71,7 +72,7 @@ class TicTacToeBoardTest {
     void getFreeFields() {
         TicTacToeBoard board = new TicTacToeBoard();
         List<TicTacToeFieldKey> freeFields = board.getKeysOfFreeFields();
-        int expected = TicTacToeFieldKey.toList().size();
+        int expected = toList().size();
         assertThat(freeFields).hasSize(expected);
 
     }
@@ -81,10 +82,10 @@ class TicTacToeBoardTest {
     void getFreeFieldsAfterSettingField() {
         TicTacToeBoard board = new TicTacToeBoard();
 
-        board.setPlayer(TicTacToeFieldKey.Nine, playerOne);
+        board.setPlayer(Nine, playerOne);
         List<TicTacToeFieldKey> freeFields = board.getKeysOfFreeFields();
 
-        assertThat(freeFields).doesNotContain(TicTacToeFieldKey.Nine);
+        assertThat(freeFields).doesNotContain(Nine);
 
     }
 
