@@ -20,7 +20,7 @@ public class PlayerConfigurator {
 
     private final TicTacToePrinter printer;
     private final TicTacToeInputCollector collector;
-    private final GameStateEvaluator evaluator;
+    private final MinimaxFactory minimaxFactory;
 
     public PlayerConfiguration createConfiguration() {
 
@@ -38,12 +38,12 @@ public class PlayerConfigurator {
 
             } else if ("2".equals(selectedPlayerType)) {
                 Player playerOne = new HumanPlayer(PLAYER_SYMBOL_X, printer, collector);
-                Player playerTwo = new KIPlayer(PLAYER_SYMBOL_O, evaluator);
+                Player playerTwo = new KIPlayer(PLAYER_SYMBOL_O, minimaxFactory);
                 return new PlayerConfiguration(playerOne, playerTwo);
 
             } else if ("3".equals(selectedPlayerType)) {
-                Player playerOne = new KIPlayer(PLAYER_SYMBOL_X, evaluator);
-                Player playerTwo = new KIPlayer(PLAYER_SYMBOL_O, evaluator);
+                Player playerOne = new KIPlayer(PLAYER_SYMBOL_X, minimaxFactory);
+                Player playerTwo = new KIPlayer(PLAYER_SYMBOL_O, minimaxFactory);
                 return new PlayerConfiguration(playerOne, playerTwo);
 
             } else {

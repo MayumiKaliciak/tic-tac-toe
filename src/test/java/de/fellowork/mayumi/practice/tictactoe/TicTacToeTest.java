@@ -19,7 +19,9 @@ class TicTacToeTest {
         TicTacToeInputCollector collectorMock = mock(TicTacToeInputCollector.class);
         when(collectorMock.collectPlayerType()).thenReturn("3");
         TicTacToe tictactoe = new TicTacToe();
-        tictactoe.startGame(collectorMock);
+        Optional<Player> winner = tictactoe.startGame(collectorMock);
+        assertThat(winner).isEmpty();
+
     }
 
     @Test
