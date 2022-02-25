@@ -1,6 +1,8 @@
-package de.fellowork.mayumi.practice.tictactoe.player;
+package de.fellowork.mayumi.practice.tictactoe.player.minimax;
 
 import de.fellowork.mayumi.practice.tictactoe.board.TicTacToeBoard;
+import de.fellowork.mayumi.practice.tictactoe.player.Player;
+import de.fellowork.mayumi.practice.tictactoe.player.PlayerSymbol;
 
 class MiniMaxPlayer implements Player {
 

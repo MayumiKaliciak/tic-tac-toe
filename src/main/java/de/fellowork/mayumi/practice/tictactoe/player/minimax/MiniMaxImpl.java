@@ -1,23 +1,25 @@
-package de.fellowork.mayumi.practice.tictactoe.player;
+package de.fellowork.mayumi.practice.tictactoe.player.minimax;
 
 import de.fellowork.mayumi.practice.tictactoe.GameStateEvaluator;
 import de.fellowork.mayumi.practice.tictactoe.board.TicTacToeBoard;
 import de.fellowork.mayumi.practice.tictactoe.board.TicTacToeFieldKey;
+import de.fellowork.mayumi.practice.tictactoe.player.Player;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class MiniMax {
+class MiniMaxImpl implements MiniMax {
 
     private final GameStateEvaluator evaluator;
     private final TicTacToeBoard board;
     private final Player ki;
     private final Player opponent;
 
+    @Override
     public int calculateScore() {
         return minimax(false, 9);
     }
 
-    public int minimax(boolean isMaximizingPlayer, int depth) {
+    int minimax(boolean isMaximizingPlayer, int depth) {
 
         if (evaluator.checkPLayerWinningStatus(isMaximizingPlayer ? ki : opponent, board)) {
             return evaluate(isMaximizingPlayer);
@@ -35,7 +37,7 @@ public class MiniMax {
 
     }
 
-    private int maximize(int depth) {
+    int maximize(int depth) {
 
         int bestScore = Integer.MIN_VALUE;
 
@@ -49,7 +51,7 @@ public class MiniMax {
         return bestScore;
     }
 
-    private int minimize(int depth) {
+    int minimize(int depth) {
 
         int bestScore = Integer.MAX_VALUE;
 
@@ -64,7 +66,7 @@ public class MiniMax {
         return bestScore;
     }
 
-    private int evaluate(boolean isMaximizingPlayer) {
+    int evaluate(boolean isMaximizingPlayer) {
         if (isMaximizingPlayer) {
             return 10;
         } else {

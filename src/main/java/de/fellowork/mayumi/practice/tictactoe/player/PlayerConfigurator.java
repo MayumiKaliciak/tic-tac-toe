@@ -1,8 +1,8 @@
 package de.fellowork.mayumi.practice.tictactoe.player;
 
-import de.fellowork.mayumi.practice.tictactoe.GameStateEvaluator;
 import de.fellowork.mayumi.practice.tictactoe.input.TicTacToeInputCollector;
 import de.fellowork.mayumi.practice.tictactoe.output.TicTacToePrinter;
+import de.fellowork.mayumi.practice.tictactoe.player.minimax.MinimaxFactory;
 import lombok.AllArgsConstructor;
 
 import static de.fellowork.mayumi.practice.tictactoe.player.PlayerSymbol.PLAYER_SYMBOL_O;

@@ -2,6 +2,8 @@ package de.fellowork.mayumi.practice.tictactoe.player;
 
 import de.fellowork.mayumi.practice.tictactoe.board.TicTacToeBoard;
 import de.fellowork.mayumi.practice.tictactoe.board.TicTacToeFieldKey;
+import de.fellowork.mayumi.practice.tictactoe.player.minimax.MiniMax;
+import de.fellowork.mayumi.practice.tictactoe.player.minimax.MinimaxFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
