@@ -13,20 +13,19 @@ class KIPlayer implements Player {
     @Override
     public TicTacToeBoard doGameMove(TicTacToeBoard board) {
 
-        TicTacToeBoard copyBoard = board.clone();
         int bestScore = Integer.MIN_VALUE;
         TicTacToeFieldKey bestField = null;
-        for (TicTacToeFieldKey fieldKey : copyBoard.getKeysOfFreeFields()) {
-                copyBoard.setPlayer(fieldKey, this);
-                MiniMax miniMax = minimaxFactory.buildMiniMax(this);
-                int score = miniMax.minimax(false, copyBoard);
-                copyBoard.unsetPlayer(fieldKey, this);
 
-                if (score > bestScore) {
-                    bestScore = score;
-                    bestField = fieldKey;
-                }
+        for (TicTacToeFieldKey fieldKey : board.getKeysOfFreeFields()) {
+
+            MiniMax miniMax = createMiniMax(board, fieldKey);
+
+            int score = miniMax.calculateScore();
+            if (score > bestScore) {
+                bestScore = score;
+                bestField = fieldKey;
             }
+        }
 
         if (bestScore != Integer.MIN_VALUE) {
             board.setPlayer(bestField, this);
@@ -34,6 +33,11 @@ class KIPlayer implements Player {
         return board;
     }
 
+    private MiniMax createMiniMax(TicTacToeBoard board, TicTacToeFieldKey fieldKey) {
+        TicTacToeBoard copyBoard = board.clone();
+        copyBoard.setPlayer(fieldKey, this);
+        return minimaxFactory.buildMiniMax(this, copyBoard);
+    }
 
     @Override
     public PlayerSymbol getPlayerSymbol() {
