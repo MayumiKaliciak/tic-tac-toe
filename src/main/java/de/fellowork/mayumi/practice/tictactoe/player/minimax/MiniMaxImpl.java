@@ -21,7 +21,7 @@ class MiniMaxImpl implements MiniMax {
 
     int minimax(boolean isMaximizingPlayer, int depth) {
 
-        if (evaluator.checkPLayerWinningStatus(isMaximizingPlayer ? ki : opponent, board)) {
+        if (evaluator.checkPlayerWinningStatus(isMaximizingPlayer ? ki : opponent, board)) {
             return evaluate(isMaximizingPlayer);
         }
 

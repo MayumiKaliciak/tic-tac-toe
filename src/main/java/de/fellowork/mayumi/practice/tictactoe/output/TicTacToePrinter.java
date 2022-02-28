@@ -3,43 +3,43 @@ package de.fellowork.mayumi.practice.tictactoe.output;
 import de.fellowork.mayumi.practice.tictactoe.board.TicTacToeBoard;
 import de.fellowork.mayumi.practice.tictactoe.board.TicTacToeFieldKey;
 import de.fellowork.mayumi.practice.tictactoe.player.Player;
+import lombok.RequiredArgsConstructor;
 
-/**
- * alles zum spielbrett ausgeben oder züge
- * züge ausgeben
- * spielbrett ausgeben
- * gewinner ausgeben
- */
+
+@RequiredArgsConstructor
 public class TicTacToePrinter {
 
+    private final ConsoleOutput consoleOutput;
+    private final Messages messages;
+
+    public void printLanguageSetting(){
+        consoleOutput.printToConsole(messages.getLanguageMessage());
+    }
+
     public void printStartPlayInfo() {
-        System.out.println("Welcome to Tic Tac Toe. To access the fields press right keys on your keyboard. Example: To access field top right, press 9");
-        String printedTicTacToe = "7 | 8 | 9\n---------\n4 | 5 | 6\n---------\n1 | 2 | 3\n";
-        System.out.println(printedTicTacToe);
+        consoleOutput.printToConsole(messages.getWelcomeMessage());
+        String printedTicTacToe = getPrintedTicTacToe();
+        consoleOutput.printToConsole(printedTicTacToe);
     }
 
     public void printGameConfiguration() {
-        System.out.println("The options to play TicTacToe are: \n1: human-human\n2: human-computer\n3: computer-computer");
-    }
-
-    public void printChoosePlayerOne() {
-        System.out.println("Please select option for the first player by typing in 'human' or 'computer'");
+        consoleOutput.printToConsole("The options to play TicTacToe are: \n1: human-human\n2: human-computer\n3: computer-computer");
     }
 
     public void printChoosePlayerOption() {
-        System.out.println("Please select option for the first player by typing in correct option number");
+        consoleOutput.printToConsole("Please select option for the first player by typing in correct option number");
     }
 
     public void printFailureMessage() {
-        System.out.println("Not able to recognize input. Please try again choosing 'human' or 'computer'");
+        consoleOutput.printToConsole("Not able to recognize input. Please try again choosing 'human' or 'computer'");
     }
 
     public void printGameMoveRequest() {
-        System.out.println("Please select field");
+        consoleOutput.printToConsole("Please select field");
     }
 
     public void printBoardToConsole(TicTacToeBoard board) {
-        String printedTicTacToe = "7 | 8 | 9\n---------\n4 | 5 | 6\n---------\n1 | 2 | 3\n";
+        String printedTicTacToe = getPrintedTicTacToe();
         for (TicTacToeFieldKey key : TicTacToeFieldKey.toList()) {
             Player player = board.getPlayer(key);
 
@@ -48,7 +48,7 @@ public class TicTacToePrinter {
             }
 
         }
-        System.out.println(printedTicTacToe);
+        consoleOutput.printToConsole(printedTicTacToe);
     }
 
     public boolean playerIsSet(Player player) {
@@ -61,14 +61,18 @@ public class TicTacToePrinter {
     }
 
     public void printOutDraw() {
-        System.out.println("Draw! Nobody has won the game");
+        consoleOutput.printToConsole("Draw! Nobody has won the game");
     }
 
     public void printPlayerWon(Player player) {
-        System.out.println("The winner is Player: " + player.getPlayerSymbol());
+        consoleOutput.printToConsole("The winner is Player: " + player.getPlayerSymbol());
     }
 
     public void invalidGameFieldKeyEntered() {
-        System.out.println("You entered an invalid field number. Try again.");
+        consoleOutput.printToConsole("You entered an invalid field number. Try again.");
+    }
+
+    private String getPrintedTicTacToe() {
+        return "7 | 8 | 9\n---------\n4 | 5 | 6\n---------\n1 | 2 | 3\n";
     }
 }

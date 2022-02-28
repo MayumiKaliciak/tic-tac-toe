@@ -70,7 +70,7 @@ class TicTacToeGameLoopTest {
 
         when(board.boardIsFull()).thenReturn(false);
         when(playerOne.doGameMove(board)).thenReturn(board);
-        when(evaluator.checkPLayerWinningStatus(playerOne, board)).thenReturn(true);
+        when(evaluator.checkPlayerWinningStatus(playerOne, board)).thenReturn(true);
 
         Optional<Player> winner = loop.run(board, config);
         assertThat(winner).isPresent();
@@ -90,9 +90,9 @@ class TicTacToeGameLoopTest {
 
         when(board.boardIsFull()).thenReturn(false, false);
         when(playerOne.doGameMove(board)).thenReturn(board);
-        when(evaluator.checkPLayerWinningStatus(playerOne, board)).thenReturn(false);
+        when(evaluator.checkPlayerWinningStatus(playerOne, board)).thenReturn(false);
         when(playerTwo.doGameMove(board)).thenReturn(board);
-        when(evaluator.checkPLayerWinningStatus(playerTwo, board)).thenReturn(true);
+        when(evaluator.checkPlayerWinningStatus(playerTwo, board)).thenReturn(true);
 
         Optional<Player> winner = loop.run(board, config);
         assertThat(winner).isPresent();

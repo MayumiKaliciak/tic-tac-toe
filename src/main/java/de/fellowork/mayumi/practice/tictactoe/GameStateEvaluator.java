@@ -9,7 +9,7 @@ import static de.fellowork.mayumi.practice.tictactoe.board.TicTacToeFieldKey.*;
 @AllArgsConstructor
 public class GameStateEvaluator {
 
-    public boolean checkPLayerWinningStatus(Player player, TicTacToeBoard board) {
+    public boolean checkPlayerWinningStatus(Player player, TicTacToeBoard board) {
         return sameValuesInColumn(player, board) ||
                 sameValuesInRow(player, board) ||
                 sameValuesInDiagonal(player, board);

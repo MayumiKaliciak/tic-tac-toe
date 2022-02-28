@@ -30,14 +30,14 @@ public class TicTacToeGameLoop {
 
             if (gameRounds % 2 != 0) {
                 board = doPlayerMove(board, playerOne);
-                if (evaluator.checkPLayerWinningStatus(playerOne, board)) {
+                if (evaluator.checkPlayerWinningStatus(playerOne, board)) {
                     printer.printPlayerWon(playerOne);
                     return of(playerOne);
                 }
 
             } else {
                 board = doPlayerMove(board, playerTwo);
-                if (evaluator.checkPLayerWinningStatus(playerTwo, board)) {
+                if (evaluator.checkPlayerWinningStatus(playerTwo, board)) {
                     printer.printPlayerWon(playerTwo);
                     return of(playerTwo);
                 }
