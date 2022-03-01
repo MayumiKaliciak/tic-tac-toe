@@ -5,7 +5,7 @@ import de.fellowork.mayumi.practice.tictactoe.board.TicTacToeFieldKey;
 import java.util.Optional;
 
 public interface TicTacToeInputCollector {
-    String collectPlayerType();
+    GameModeKey collectPlayerType();
 
     Optional<TicTacToeFieldKey> collectGameMove();
 }

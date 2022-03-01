@@ -12,8 +12,9 @@ public class DefaultInputCollector implements TicTacToeInputCollector {
     private final Scanner scanner;
 
     @Override
-    public String collectPlayerType() {
-        return scanner.nextLine();
+    public GameModeKey collectPlayerType() {
+        String scannedLine = scanner.nextLine();
+        return GameModeKey.findByNumberString(scannedLine);
     }
 
     @Override

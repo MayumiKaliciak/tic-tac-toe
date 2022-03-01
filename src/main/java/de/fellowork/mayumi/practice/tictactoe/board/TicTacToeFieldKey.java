@@ -1,10 +1,12 @@
 package de.fellowork.mayumi.practice.tictactoe.board;
 
+import de.fellowork.mayumi.practice.tictactoe.input.GameModeKey;
 import lombok.Getter;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 public enum TicTacToeFieldKey {
 
@@ -31,8 +33,12 @@ public enum TicTacToeFieldKey {
 
     public static Optional<TicTacToeFieldKey> findByNumberString(String numberAsString) {
         return toList().stream()
-                .filter(key -> numberAsString.equals(key.getNumberAsString()))
+                .filter(filterByNumber(numberAsString))
                 .findFirst();
+    }
+
+    private static Predicate<TicTacToeFieldKey> filterByNumber(String numberAsString) {
+        return key -> key.getNumberAsString().equals(numberAsString);
     }
 
 }

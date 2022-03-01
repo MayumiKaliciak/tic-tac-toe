@@ -23,19 +23,19 @@ public class TicTacToePrinter {
     }
 
     public void printGameConfiguration() {
-        consoleOutput.printToConsole("The options to play TicTacToe are: \n1: human-human\n2: human-computer\n3: computer-computer");
+        consoleOutput.printToConsole(messages.getGameConfiguration());
     }
 
     public void printChoosePlayerOption() {
-        consoleOutput.printToConsole("Please select option for the first player by typing in correct option number");
+        consoleOutput.printToConsole(messages.getPlayerOption());
     }
 
     public void printFailureMessage() {
-        consoleOutput.printToConsole("Not able to recognize input. Please try again choosing 'human' or 'computer'");
+        consoleOutput.printToConsole(messages.getFailureMessage());
     }
 
     public void printGameMoveRequest() {
-        consoleOutput.printToConsole("Please select field");
+        consoleOutput.printToConsole(messages.getGameMoveRequest());
     }
 
     public void printBoardToConsole(TicTacToeBoard board) {
@@ -61,18 +61,18 @@ public class TicTacToePrinter {
     }
 
     public void printOutDraw() {
-        consoleOutput.printToConsole("Draw! Nobody has won the game");
+        consoleOutput.printToConsole(messages.getDrawOutput());
     }
 
     public void printPlayerWon(Player player) {
-        consoleOutput.printToConsole("The winner is Player: " + player.getPlayerSymbol());
+        consoleOutput.printToConsole(messages.getWinnerOutput() + player.getPlayerSymbol());
     }
 
     public void invalidGameFieldKeyEntered() {
-        consoleOutput.printToConsole("You entered an invalid field number. Try again.");
+        consoleOutput.printToConsole(messages.getInvalidFieldKeyOutput());
     }
 
-    private String getPrintedTicTacToe() {
+    String getPrintedTicTacToe() {
         return "7 | 8 | 9\n---------\n4 | 5 | 6\n---------\n1 | 2 | 3\n";
     }
 }

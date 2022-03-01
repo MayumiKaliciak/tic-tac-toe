@@ -1,10 +1,12 @@
 package de.fellowork.mayumi.practice.tictactoe.player;
 
+import de.fellowork.mayumi.practice.tictactoe.input.GameModeKey;
 import de.fellowork.mayumi.practice.tictactoe.input.TicTacToeInputCollector;
 import de.fellowork.mayumi.practice.tictactoe.output.TicTacToePrinter;
 import de.fellowork.mayumi.practice.tictactoe.player.minimax.MinimaxFactory;
 import lombok.AllArgsConstructor;
 
+import static de.fellowork.mayumi.practice.tictactoe.input.GameModeKey.*;
 import static de.fellowork.mayumi.practice.tictactoe.player.PlayerSymbol.PLAYER_SYMBOL_O;
 import static de.fellowork.mayumi.practice.tictactoe.player.PlayerSymbol.PLAYER_SYMBOL_X;
 
@@ -29,19 +31,19 @@ public class PlayerConfigurator {
 
         while (true) {
 
-            String selectedPlayerType = collector.collectPlayerType();
+            GameModeKey gameMode = collector.collectPlayerType();
 
-            if ("1".equals(selectedPlayerType)) {
+            if (HumanHuman.equals(gameMode)) {
                 Player playerOne = new HumanPlayer(PLAYER_SYMBOL_X, printer, collector);
                 Player playerTwo = new HumanPlayer(PLAYER_SYMBOL_O, printer, collector);
                 return new PlayerConfiguration(playerOne, playerTwo);
 
-            } else if ("2".equals(selectedPlayerType)) {
+            } else if (HumanComputer.equals(gameMode)) {
                 Player playerOne = new HumanPlayer(PLAYER_SYMBOL_X, printer, collector);
                 Player playerTwo = new KIPlayer(PLAYER_SYMBOL_O, minimaxFactory);
                 return new PlayerConfiguration(playerOne, playerTwo);
 
-            } else if ("3".equals(selectedPlayerType)) {
+            } else if (ComputerComputer.equals(gameMode)) {
                 Player playerOne = new KIPlayer(PLAYER_SYMBOL_X, minimaxFactory);
                 Player playerTwo = new KIPlayer(PLAYER_SYMBOL_O, minimaxFactory);
                 return new PlayerConfiguration(playerOne, playerTwo);

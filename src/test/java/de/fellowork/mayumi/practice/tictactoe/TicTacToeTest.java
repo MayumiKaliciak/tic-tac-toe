@@ -1,5 +1,6 @@
 package de.fellowork.mayumi.practice.tictactoe;
 
+import de.fellowork.mayumi.practice.tictactoe.input.GameModeKey;
 import de.fellowork.mayumi.practice.tictactoe.input.TicTacToeInputCollector;
 import de.fellowork.mayumi.practice.tictactoe.player.Player;
 import org.junit.jupiter.api.Test;
@@ -7,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Optional;
 
 import static de.fellowork.mayumi.practice.tictactoe.board.TicTacToeFieldKey.*;
+import static de.fellowork.mayumi.practice.tictactoe.input.GameModeKey.*;
 import static java.util.Optional.of;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
@@ -17,7 +19,7 @@ class TicTacToeTest {
     @Test
     void runGameKIPlayerVsKIPlayer() {
         TicTacToeInputCollector collectorMock = mock(TicTacToeInputCollector.class);
-        when(collectorMock.collectPlayerType()).thenReturn("3");
+        when(collectorMock.collectPlayerType()).thenReturn(ComputerComputer);
         TicTacToe tictactoe = new TicTacToe();
         Optional<Player> winner = tictactoe.startGame(collectorMock);
         assertThat(winner).isEmpty();
@@ -55,7 +57,7 @@ class TicTacToeTest {
 
     private TicTacToeInputCollector getInputMockHumanVsHuman() {
         TicTacToeInputCollector collectorMock = mock(TicTacToeInputCollector.class);
-        when(collectorMock.collectPlayerType()).thenReturn("1");
+        when(collectorMock.collectPlayerType()).thenReturn(HumanHuman);
         return collectorMock;
     }
 
