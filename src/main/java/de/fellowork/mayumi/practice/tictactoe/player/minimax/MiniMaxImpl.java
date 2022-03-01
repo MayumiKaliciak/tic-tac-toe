@@ -16,6 +16,7 @@ class MiniMaxImpl implements MiniMax {
 
     @Override
     public int calculateScore() {
+
         return minimax(false, 9);
     }
 

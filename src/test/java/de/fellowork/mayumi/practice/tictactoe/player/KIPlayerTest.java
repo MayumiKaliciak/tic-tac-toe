@@ -10,9 +10,11 @@ import org.mockito.InOrder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
 
 import static de.fellowork.mayumi.practice.tictactoe.board.TicTacToeFieldKey.One;
 import static de.fellowork.mayumi.practice.tictactoe.player.PlayerSymbol.PLAYER_SYMBOL_X;
+import static java.util.concurrent.Executors.*;
 import static org.mockito.Mockito.*;
 
 class KIPlayerTest {
@@ -28,7 +30,7 @@ class KIPlayerTest {
         board = mock(TicTacToeBoard.class);
         miniMax = mock(MiniMax.class);
         MinimaxFactory minimaxFactory = mock(MinimaxFactory.class);
-        playerOne = new KIPlayer(PLAYER_SYMBOL_X, minimaxFactory);
+        playerOne = new KIPlayer(PLAYER_SYMBOL_X, minimaxFactory,  newFixedThreadPool(9));
 
         when(minimaxFactory.buildMiniMax(playerOne, board)).thenReturn(miniMax);
     }
