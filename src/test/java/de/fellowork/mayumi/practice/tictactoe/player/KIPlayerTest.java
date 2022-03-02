@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InOrder;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Executors;
 
@@ -16,6 +17,7 @@ import static de.fellowork.mayumi.practice.tictactoe.board.TicTacToeFieldKey.One
 import static de.fellowork.mayumi.practice.tictactoe.player.PlayerSymbol.PLAYER_SYMBOL_X;
 import static java.util.concurrent.Executors.*;
 import static org.mockito.Mockito.*;
+import static org.assertj.core.api.Assertions.*;
 
 class KIPlayerTest {
 
@@ -30,7 +32,7 @@ class KIPlayerTest {
         board = mock(TicTacToeBoard.class);
         miniMax = mock(MiniMax.class);
         MinimaxFactory minimaxFactory = mock(MinimaxFactory.class);
-        playerOne = new KIPlayer(PLAYER_SYMBOL_X, minimaxFactory,  newFixedThreadPool(9));
+        playerOne = new KIPlayer(PLAYER_SYMBOL_X, minimaxFactory, newSingleThreadExecutor());
 
         when(minimaxFactory.buildMiniMax(playerOne, board)).thenReturn(miniMax);
     }
@@ -56,25 +58,14 @@ class KIPlayerTest {
     }
 
     @Test
-    void currentScoreNotBetterThanBestScore() {
 
-        List<TicTacToeFieldKey> listOfFreeKeys = new ArrayList<>();
-        listOfFreeKeys.add(One);
+    void noFreeFields() {
 
         when(board.clone()).thenReturn(board);
-        when(board.getKeysOfFreeFields()).thenReturn(listOfFreeKeys);
-        when(miniMax.calculateScore()).thenReturn(Integer.MIN_VALUE);
+        when(board.getKeysOfFreeFields()).thenReturn(new ArrayList<>());
 
-        playerOne.doGameMove(board);
-
-        InOrder checkOrder = inOrder(board, miniMax);
-
-        checkOrder.verify(board).getKeysOfFreeFields();
-        checkOrder.verify(miniMax).calculateScore();
-        checkOrder.verify(board, never()).setPlayer(One, playerOne);
-
+        assertThatExceptionOfType(RuntimeException.class).isThrownBy(()->playerOne.doGameMove(board));
 
     }
-
 
 }

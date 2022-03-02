@@ -6,6 +6,8 @@ import de.fellowork.mayumi.practice.tictactoe.player.minimax.MiniMax;
 import de.fellowork.mayumi.practice.tictactoe.player.minimax.MinimaxFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
@@ -19,13 +21,16 @@ class KIPlayer implements Player {
     @Override
     public TicTacToeBoard doGameMove(TicTacToeBoard board) {
 
-        FieldScore fieldScore = board.getKeysOfFreeFields()
+        List<Future<FieldScore>> fieldScoreFutures = board.getKeysOfFreeFields()
                 .stream()
                 .map(fieldKey -> run(fieldKey, board))
+                .toList();
+
+        FieldScore fieldScore = fieldScoreFutures.stream()
                 .map(this::getFuture)
                 .sorted()
                 .findFirst()
-                .orElseThrow(() ->  new RuntimeException("unable to calculate optimal fieldKey"));
+                .orElseThrow(() -> new RuntimeException("unable to calculate optimal fieldKey"));
 
         board.setPlayer(fieldScore.getFieldKey(), this);
         return board;
@@ -40,13 +45,6 @@ class KIPlayer implements Player {
     private Future<FieldScore> run(TicTacToeFieldKey fieldKey, TicTacToeBoard board) {
         return executor.submit(() -> {
             MiniMax miniMax = createMiniMax(board, fieldKey);
-            System.out.println("begin");
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            System.out.println("end");
             int score = miniMax.calculateScore();
             return new FieldScore(fieldKey, score);
         });
