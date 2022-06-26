@@ -7,7 +7,7 @@
   * Testcoverage:
     * 95% class
     * 88% method
-    * 91% line#
+    * 91% line
 
 ## game info 
 * two languages 
